@@ -1,0 +1,14 @@
+.element__name {
+    background-color: white;
+    color: black;
+    background-image: url(../../../images/element__r.png);
+    background-size: 79px;
+    min-width: 282px;
+    height: 71px;
+    border-radius: 0px 0px 10px 10px;
+    margin: 0;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+}
