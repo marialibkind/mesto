@@ -4,4 +4,6 @@
     overflow: hidden;
     list-style: none;
     width: 282px;
+    margin-left: auto;
+    margin-right: auto;
 }
