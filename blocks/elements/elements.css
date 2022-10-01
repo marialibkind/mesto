@@ -9,6 +9,15 @@
     row-gap: 20px;
     padding: 0;
 }
+@media screen and (max-width: 1023px) {
+    .elements {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        margin-left: 19px;
+        margin-right: 19px;
+        margin-bottom: 48px;
+    }
+}
 @media screen and (max-width: 767px) {
     .elements {
         grid-template-columns: 1fr;

@@ -1,6 +1,7 @@
-.profile__v{
+.profile__edit-btn{
     border: white solid;
     width: 10px;
     height: 10px;
     padding: 7px;
+    margin-left: 25px;
 }

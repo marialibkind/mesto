@@ -1,7 +1,4 @@
 .element {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
     list-style: none;
     width: 282px;
     margin-left: auto;
