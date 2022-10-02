@@ -1,3 +1,16 @@
 .element__h {
+    background-image: url(../../../images/heart.png);
+    border: none;
     width: 22px;
+    height: 19px;
+    background-color: white;
+}
+
+.element__h:hover {
+    cursor: pointer;
+    opacity: 0.5;
+
+}
+.element__h:active{
+    fill:black
 }

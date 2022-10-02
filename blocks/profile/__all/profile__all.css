@@ -1,4 +1,7 @@
 .profile__all{
     align-items: baseline;
     max-width: 336px;
+    justify-content: space-between;
+    display: flex;
+    margin: 0 auto;
 }
