@@ -1,27 +1,24 @@
-const POPUP_ACTIVE_CLASS = document.querySelector(".popup_active");
-
-const openProfileBtn = document.querySelector(".profile__edit-btn");
-const profile = document.querySelector(".popup");
-const profileContent = document.querySelector(".popup__content");
-const profileCloseButton = document.querySelector(".popup__cross-icon");
+const openProfilePopup = document.querySelector(".profile__edit-btn");
+const popup = document.querySelector(".popup");
+const popupContent = document.querySelector(".popup__container");
+const closeProfileButton = document.querySelector(".popup__cross-icon");
 const form = document.querySelector(".popup__text");
 const nameInput = document.querySelector(".popup__text_name");
-const nameInput = document.querySelector(".popup__text_about");
-
+const infoInput = document.querySelector(".popup__text_about");
 const func = () => 1;
 
 console.log(func());
 
 openProfilePopup.addEventListener("click", function(){
-    popup.classList.add(POPUP_ACTIVE_CLASS);
+    popup.classList.add("popup_active");
 });
 
-popup.addEventListener("submit", (event) => {
-    if (!popupContent.contains(event.target) || event.target === profileCloseButton) {
-        popup.classList.remove(POPUP_ACTIVE_CLASS);
+closeProfileButton.addEventListener("click", (event) => {
+    if (!popupContent.contains(event.target) || event.target === closeProfileButton) {
+        popup.classList.remove("popup_active");
     }
 });
 
 form.addEventListener("submit", () => {
-    form.querySelector(".form__text")
+   form.querySelector(".form__text")
 });

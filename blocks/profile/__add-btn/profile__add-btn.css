@@ -11,6 +11,7 @@
     display: block;
     text-align: right;
     margin:  0 0 0 auto;
+    background-position: center;
 }
 
 .profile__add-btn:hover {

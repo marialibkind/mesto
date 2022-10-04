@@ -12,5 +12,6 @@
 
 }
 .element__h:active{
-    fill:black
+    fill:black;
+    background-color: black;
 }

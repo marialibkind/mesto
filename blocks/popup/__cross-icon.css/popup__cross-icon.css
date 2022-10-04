@@ -8,6 +8,7 @@
     width: 32px;
     height: 32px;
     margin: 0 0 16px;
+    cursor: pointer;
 }
 
 .popup__cross-icon:hover {
@@ -15,8 +16,8 @@
 }
 
 @media screen and (max-width: 767px) {
-    .profile__cross-icon {
-        right: -20px;
+    .popup__cross-icon {
+        right: 0px;
         width: 20px;
         height: 20px;
     }
