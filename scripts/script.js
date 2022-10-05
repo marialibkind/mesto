@@ -23,20 +23,13 @@ closeProfileButton.addEventListener("click", (event) => {
     }
 });
 
-form.addEventListener("submit", () => {
-    form.querySelector(".popup__text")
-});
 
+function formSubmitHandler(evt) {
+    evt.preventDefault();
 
-// let formElement =  document.querySelector(".popup__text");
-// let nameInput =  document.querySelector(".popup__text_name");
-// let jobInput = document.querySelector(".popup__text_about");
+    profileName.textContent = nameInput.value;
+    profileInfo.textContent = infoInput.value;
 
-//  function formSubmitHandler (evt) {
-//     evt.preventDefault(); 
-//      nameInput.value = formElement.textContent;
-//      jobInput.value = formElement.textContent;
-//      profileName = 
-//      profileInfo = 
-//  }
-// formElement.addEventListener('submit', formSubmitHandler); 
+    popup.classList.remove("popup_active");
+}
+formElement.addEventListener('submit', formSubmitHandler); 
