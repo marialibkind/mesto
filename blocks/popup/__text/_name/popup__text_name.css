@@ -3,5 +3,7 @@
     font-size: 14px;
     line-height: 26px;
     margin: 0 0 30px;
+    border: none;
     border-bottom: black 1px solid;
+    width: 100%;
 }
