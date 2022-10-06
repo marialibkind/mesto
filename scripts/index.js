@@ -7,9 +7,6 @@ const nameInput = document.querySelector(".popup__text-name");
 const infoInput = document.querySelector(".popup__text-about");
 const profileName = document.querySelector(".profile__name");
 const profileInfo = document.querySelector(".profile__info");
-const func = () => 1;
-
-console.log(func());
 
 openProfilePopup.addEventListener("click", function () {
     popup.classList.add("popup_active");

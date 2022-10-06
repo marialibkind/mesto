@@ -1,17 +1,17 @@
-.element__h {
-    background-image: url(../../../images/heart.png);
+.element__like {
+    background-image: url(../../../images/element__like.svg);
     border: none;
     width: 22px;
     height: 19px;
     background-color: white;
+    cursor: pointer;
 }
 
-.element__h:hover {
-    cursor: pointer;
+.element__like:hover {
     opacity: 0.5;
 
 }
-.element__h:active{
+.element__like:active{
     fill:black;
     background-color: black;
 }

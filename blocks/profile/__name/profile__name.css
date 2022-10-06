@@ -13,5 +13,8 @@
         flex-direction: row;
         font-size: 27px;
         line-height: 33px;
+        text-align: center;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
 }

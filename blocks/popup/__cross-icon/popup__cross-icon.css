@@ -1,6 +1,8 @@
 .popup__cross-icon {
-    background-image: url(../../../images/cross.png);
+    background-image: url(../../../images/cross.svg) ;
     background-repeat: no-repeat;
+    background-color: #000;
+    background-size: cover;
     position: absolute;
     top: -40px;
     color: black;

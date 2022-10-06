@@ -1,12 +1,13 @@
 .profile__add-btn {
-    border: white solid;
-    background-color: black;
+    border: 2px solid white;
+    background-color: #000;
+    border-radius: 2px;
     padding: 0;
     width: 150px;
     height: 50px;
     color: white;
     cursor: pointer;
-    background: url(../../../images/plus.png);
+    background: url(../../../images/plus.svg);
     background-repeat: no-repeat;
     display: block;
     text-align: right;
@@ -21,5 +22,6 @@
 @media screen and (max-width: 767px) {
     .profile__add-btn {
         margin-left: 0;
+        width: 282px;
     }
 }

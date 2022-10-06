@@ -1,15 +1,18 @@
 .popup {
     background-color: white;
     color: black;
-    position: absolute;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
     top: 195px;
     width: 430px;
-    height: 330px;
+    max-height: 330px;
     margin: 0 425px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     visibility: hidden;
+    display: none;
 }
 
 @media screen and (max-width: 1279px) {
@@ -22,7 +25,7 @@
     .popup {
         margin: 0 calc((100% - 288px)/2);
         width: 288px;
-        height: 322px;
+        max-height: 322px;
         top: 123px;
     }
 }
