@@ -13,7 +13,7 @@
 }
 
 .popup__submit-btn:hover {
-    background: rgba(0.6);
+    opacity: 0.8;
 }
 
 @media screen and (max-width: 767px) {

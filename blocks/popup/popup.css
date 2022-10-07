@@ -5,8 +5,7 @@
     align-items: center;
     justify-content: center;
     top: 195px;
-    
-   
+    max-width: 430px;
     margin: 0 425px;
     border-radius: 10px;
     display: flex;
