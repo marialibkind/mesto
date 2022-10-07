@@ -2,9 +2,9 @@
 <html lang="ru">
 
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css">
+    <link rel="stylesheet" href="../pages/index.css">
     <title>Место</title>
 </head>
 
@@ -20,7 +20,7 @@
             <div class="profile__item">
                 <div class="profile__line">
                     <h3 class="profile__name">Жак-Ив Кусто</h3>
-                    <button class="profile__edit-btn" alt="карандаш"></button>
+                    <button class="profile__edit-btn" type="button" name="edit"></button>
                 </div>
                 <p class="profile__info">Исследователь океана</p>
             </div>
@@ -80,12 +80,12 @@
         <p class="footer__copyright">&copy; 2022. Mesto Russia</p>
     </footer>
 
-    <div class="popup" action="index.html">
+    <div class="popup">
         <div class="popup__container">
             <h2 class="popup__title">Редактировать профиль</h2>
             <form class="popup__text" name="enterinformation">
-                <input class="popup__text-name" name="entername"/>
-                <input class="popup__text-about" name="enterinfo"/>
+                <input class="popup__text-name" name="entername">
+                <input class="popup__text-about" name="enterinfo">
             </form>
             <button class="popup__submit-btn" type="submit">Сохранить</button>
           </div>

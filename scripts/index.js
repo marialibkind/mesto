@@ -30,4 +30,4 @@ function formSubmitHandler(evt) {
 
     saveProfilePopup.closeProfile();
 }
-form.addEventListener('submit', formSubmitHandler); 
+saveProfilePopup.addEventListener('submit', formSubmitHandler); 
