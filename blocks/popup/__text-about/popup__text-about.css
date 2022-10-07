@@ -1,12 +1,12 @@
 .popup__text-about {
     font-weight: 400;
     font-size: 14px;
-    line-height: 27px;
+    line-height: 17px;
     border: none;
     border-bottom: rgba(0, 0, 0, 0.2) 1px solid;
     margin: 0 0 48px;
     width: 100%;
-    padding: 0;
+    padding: 0 0 13px;
 }
 @media screen and (max-width: 767px) {
     .popup__text-about {
