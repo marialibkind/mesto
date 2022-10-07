@@ -20,6 +20,7 @@ openProfilePopup.addEventListener('click', openProfile);
 function closeProfile() {
     popup.classList.remove("popup_active");
 }
+closeProfilePopup.addEventListener('click', closeProfile);
 saveProfilePopup.addEventListener('click', closeProfile);
 
 function formSubmitHandler(evt) {
@@ -28,6 +29,6 @@ function formSubmitHandler(evt) {
     profileName.textContent = nameInput.value;
     profileInfo.textContent = infoInput.value;
 
-    saveProfilePopup.addEventListener('click', closeProfile);
+    saveProfilePopup.addEventListener('click', formSubmitHandler);
 }
 form.addEventListener('submit', formSubmitHandler); 
