@@ -3,8 +3,8 @@ const popup = document.querySelector(".popup");
 const popupContent = document.querySelector(".popup__container");
 const closeProfilePopup = document.querySelector(".popup__cross-icon");
 const form = document.querySelector(".popup__text");
-const nameInput = document.querySelector(".popup__text-name");
-const infoInput = document.querySelector(".popup__text-about");
+const nameInput = document.querySelector(".popup__text_type_name");
+const infoInput = document.querySelector(".popup__text_type_about");
 const profileName = document.querySelector(".profile__name");
 const profileInfo = document.querySelector(".profile__info");
 

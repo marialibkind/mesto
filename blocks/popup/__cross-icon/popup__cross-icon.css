@@ -1,7 +1,7 @@
 .popup__cross-icon {
     background-image: url(../../../images/cross.svg);
     background-repeat: no-repeat;
-    background-color: #000;
+    background-color: rgba(0, 0, 0);
     background-size: cover;
     position: absolute;
     top: -40px;
@@ -11,6 +11,9 @@
     height: 32px;
     margin: 0 0 16px;
     cursor: pointer;
+    border: none;
+    margin-top: 8px;
+    padding: 0;
 }
 
 .popup__cross-icon:hover {
@@ -22,5 +25,6 @@
         right: 0px;
         width: 20px;
         height: 20px;
+        margin-top: 5px;
     }
 }

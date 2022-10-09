@@ -10,6 +10,7 @@
     font-size: 18px;
     line-height: 22px;
     border: none;
+    margin-top: 8px;
 }
 
 .popup__submit-btn:hover {

@@ -1,3 +1,17 @@
 .popup__text{
-    
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    border: none;
+    border-bottom: rgba(0, 0, 0, 0.2) 1px solid;
+    color: rgba(0, 0, 0);
+    width: 100%;
+    margin: 0 0 30px;
+    outline: none;
+    padding: 0 0 13px;
+}
+.popup__text:nth-last-of-type(2){
+    margin-bottom: 0;
+    padding: 0;
+    border: none;
 }
