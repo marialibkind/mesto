@@ -28,6 +28,6 @@ function formSubmitHandler(evt) {
     profileName.textContent = nameInput.value;
     profileInfo.textContent = infoInput.value;
 
-    closeProfile();
+    closeProfile()
 }
 form.addEventListener('submit', formSubmitHandler); 

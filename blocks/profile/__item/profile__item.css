@@ -1,5 +1,8 @@
-.profile__item{
+.profile__item {
     display: flex;
     flex-direction: column;
     margin: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
