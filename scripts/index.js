@@ -7,7 +7,7 @@ const nameInput = document.querySelector(".popup__text-name");
 const infoInput = document.querySelector(".popup__text-about");
 const profileName = document.querySelector(".profile__name");
 const profileInfo = document.querySelector(".profile__info");
-const saveProfilePopup = document.querySelector(".popup__submit-btn");
+
 
 
 function openProfile() {
@@ -28,6 +28,6 @@ function formSubmitHandler(evt) {
     profileName.textContent = nameInput.value;
     profileInfo.textContent = infoInput.value;
 
-    saveProfilePopup.closeProfile();
+    closeProfile();
 }
-saveProfilePopup.addEventListener('submit', formSubmitHandler); 
+form.addEventListener('submit', formSubmitHandler); 

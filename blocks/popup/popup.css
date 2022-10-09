@@ -1,29 +1,12 @@
 .popup {
-    background-color: white;
+    background-color: transparent;
     color: black;
     position: fixed;
     align-items: center;
     justify-content: center;
-    top: 195px;
-    max-width: 430px;
-    margin: 0 425px;
-    border-radius: 10px;
-    display: flex;
+    top: 0;
+    display: none;
     flex-direction: column;
     visibility: hidden;
-}
-
-@media screen and (max-width: 1279px) {
-    .popup {
-        margin: 0 calc((100% - 430px)/2);
-    }
-}
-
-@media screen and (max-width: 767px) {
-    .popup {
-        margin: 0 calc((100% - 288px)/2);
-        width: 288px;
-        max-height: 322px;
-        top: 123px;
-    }
+    top: 195px;
 }

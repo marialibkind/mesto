@@ -1,6 +1,6 @@
 .profile__add-btn {
     border: 2px solid white;
-    background-color: #000;
+    background-color: transparent;
     border-radius: 2px;
     padding: 0;
     width: 150px;
@@ -10,7 +10,6 @@
     background: url(../../../images/plus.svg);
     background-repeat: no-repeat;
     display: block;
-    text-align: right;
     margin:  0 0 0 auto;
     background-position: center;
 }
@@ -23,5 +22,6 @@
     .profile__add-btn {
         margin-left: 0;
         width: 282px;
+        background-size: 16px;
     }
 }
