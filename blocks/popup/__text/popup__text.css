@@ -8,9 +8,9 @@
     width: 100%;
     margin: 0 0 30px;
     outline: none;
-    padding: 0 0 13px;
+    padding: 0 0 9px;
 }
-.popup__text:nth-last-of-type(2){
+.popup__text:last-child{
     margin-bottom: 0;
     padding: 0;
     border: none;
