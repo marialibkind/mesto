@@ -5,14 +5,12 @@
     border-radius: 10px;
     background-color: white;
     width: 430px;
-    height: 330px;
 }
 
 @media screen and (max-width: 767px) {
     .popup__container {
         padding: 25px 22px;
         width: 282px;
-        max-height: 322px;
         margin: 0 19px;
    
     }
