@@ -1,7 +1,7 @@
 const openProfilePopup = document.querySelector(".profile__edit-btn");
-const popup = document.querySelector(".popup");
+const popup = document.querySelector(".popup-profile");
 const popupContent = document.querySelector(".popup__container");
-const closeProfilePopup = document.querySelector(".popup__cross-icon");
+const closeProfilePopup = document.querySelector(".cross");
 const form = document.querySelector(".popup__form");
 const nameInput = document.querySelector(".popup__text_type_name");
 const infoInput = document.querySelector(".popup__text_type_about");
@@ -18,10 +18,10 @@ openProfilePopup.addEventListener('click', openProfile);
 
 
 // закрытие попапа
-function closeProfile() {
+function closePopup() {
     popup.classList.remove("popup_active");
 }
-closeProfilePopup.addEventListener('click', closeProfile);
+closeProfilePopup.addEventListener('click', closePopup);
 
 
 // сохранение информации при редактировании профиля
@@ -44,11 +44,12 @@ const initialCards = [
     { name: 'Байкал', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg' }
 ] 
 const openImagePopup = document.querySelector(".profile__add-btn");
+const closeImagePopup = document.querySelector(".cross");
 const elements =  document.querySelector(".elements");
 const elementName = document.querySelector(".element__name");
 const elementImage = document.querySelector(".element__image");
 const elementsTemplate =  document.querySelector("#elements-template").content;
-const popupImage =  document.querySelector(".popup__new-image");
+const popupImage =  document.querySelector(".popup-image");
 const imageForm =  document.querySelector(".popup__form_add_image");
 const inputImageName =  document.querySelector(".popup__text_type_image-name");
 const inputImageSrc =  document.querySelector(".popup__text_type_image-src");
@@ -70,12 +71,12 @@ const elementsList = document.querySelector('.elements__list');
 
 
 // открытие попапа для добавления картинки
-function addImagePopup() {
+function openImgPopup() {
     popupImage.classList.add("popup_active");
-    inputImageName.value = elementName.textContent;
-    inputImageSrc.value = elementImage.textContent;
 }
-openImagePopup.addEventListener('click', addImagePopup);
+openImagePopup.addEventListener('click', openImgPopup);
+
+closeImagePopup.addEventListener('click', () => closePopup(popupImage));
 
 
 // добавление картинки
@@ -87,6 +88,9 @@ openImagePopup.addEventListener('click', addImagePopup);
 //         closeProfilePopup(evt);
 //     }
 // };
+
+
+
 
 
 // //  удаление картинки
