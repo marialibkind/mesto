@@ -76,7 +76,7 @@ function openImgPopup() {
 }
 openImagePopup.addEventListener('click', openImgPopup);
 
-closeImagePopup.addEventListener('click', () => closePopup(popupImage));
+closeImagePopup.addEventListener('click', closePopup);
 
 
 // добавление картинки
