@@ -46,7 +46,7 @@ const initialCards = [
 const openImagePopup = document.querySelector(".profile__add-btn");
 const elements =  document.querySelector(".elements");
 const elementName = document.querySelector(".element__name");
-const elementImage = document.querySelector(".element__image");
+const elementImage = document.querySelector(".element__new");
 const elementsTemplate =  document.querySelector("#elements-template").content;
 const popupImage =  document.querySelector(".popup__image");
 const imageForm =  document.querySelector(".popup__form_add_image");
@@ -70,12 +70,12 @@ const elementsList = document.querySelector('.elements__list');
 
 
 // открытие попапа для добавления картинки
-function addPopup() {
+function addImagePopup() {
     popupImage.classList.add("popup_active");
     inputImageName.value = elementName.textContent;
     inputImageSrc.value = elementImage.textContent;
 }
-openImagePopup.addEventListener('click', addPopup);
+openImagePopup.addEventListener('click', addImagePopup);
 
 
 // добавление картинки
@@ -94,3 +94,11 @@ openImagePopup.addEventListener('click', addPopup);
 //    element.classList.remove("element__bin");
 // }
 // deleteElement.addEventListener('click', deleteElement);
+
+
+
+// открыть картинку в полный экран
+// function opеnImage() {
+//     popupImage.classList.add("popup__fullscreen-image_active");
+// }
+// openImage.addEventListener('click', openImage;
