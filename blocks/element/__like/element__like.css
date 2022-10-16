@@ -11,7 +11,3 @@
     opacity: 0.5;
 
 }
-.element__like:active{
-    fill:black;
-    background-color: black;
-}
