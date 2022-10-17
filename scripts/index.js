@@ -48,7 +48,7 @@ const closeImagePopup = document.querySelector(".cross-image");
 const elements = document.querySelector(".elements");
 const elementsTemplate = document.querySelector("#elements-template").content;
 const popupImage = document.querySelector(".popup-image");
-const imageForm = document.querySelector(".popup__form_add_image");
+const imageForm = document.querySelector(".popup__form_add");
 const inputImageName = document.querySelector(".popup__text_type_image-name");
 const inputImageSrc = document.querySelector(".popup__text_type_image-src");
 const elementsList = document.querySelector('.elements__list');
@@ -88,11 +88,11 @@ function createCard(link, name) {
         fullPopup.classList.add("popup_active");
     }
     elementImage.addEventListener('click', openFullPopup);
-    const fullName = document.querySelector(".full-name");
+    const fullName = document.querySelector("element__name_full");
     popupImage.addEventListener('click', () => {
         fullPopup.setAttribute('src', link);
         fullPopup.setAttribute('alt', name);
-        elementImage.textContent = placeName;
+        elementImage.textContent = elementName;
     });
     return element;
 };
