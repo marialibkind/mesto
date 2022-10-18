@@ -14,7 +14,7 @@ const profileInfo = document.querySelector(".profile__info");
      fullPopup.classList.add("popup_active");
  }
 
-// закрытие попапа для изменения профиля
+// закрытие картинки на весь экран
 const closeFullPopup = document.querySelector(".cross-full"); 
 function closePopup(popup) {
     popup.classList.remove("popup_active");
