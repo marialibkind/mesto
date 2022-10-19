@@ -15,7 +15,7 @@ const infoInput = document.querySelector(".popup__text_type_about");
 const profileName = document.querySelector(".profile__name");
 const profileInfo = document.querySelector(".profile__info");
 
-// открытие картинки на весь экран
+// картинка попап на весь экран
 const fullPopup = document.querySelector(".popup-fullscreen");
 
 // открытие любого попапа
@@ -23,11 +23,13 @@ function openPopup(popup) {
     popup.classList.add("popup_active");
 }
 
-// закрытие картинки на весь экран
-const closeFullPopupButton = document.querySelector(".cross-full");
+// закрытие любого попапа
 function closePopup(popup) {
     popup.classList.remove("popup_active");
 }
+
+// закрытие картинки на весь экран
+const closeFullPopupButton = document.querySelector(".cross-full");
 closeFullPopupButton.addEventListener('click', () => closePopup(fullPopup));
 
 
@@ -88,8 +90,7 @@ function createCard(link, name) {
     //   удаление картинки
     element.querySelector(".element__bin").addEventListener('click', function (evt) {
         element.remove();
-    })
-    elementImage.addEventListener('click', openPopup);
+    });
 
     // попап при открытии картинки на большой экран
     elementImage.addEventListener('click', () => {
@@ -116,9 +117,7 @@ function imageSubmitHandler(evt) {
     evt.preventDefault();
     const imageName = ImageNameInput.value;
     const imageLink = ImageSrcInput.value;
-    renderCard(createCard(imageLink, imageName))
+    renderCard(createCard(imageLink, imageName));
     closePopup(popupImage);
-
 }
 imageForm.addEventListener('submit', imageSubmitHandler);
-closeImagePopupButton.addEventListener('click', imageSubmitHandler);

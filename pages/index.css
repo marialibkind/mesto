@@ -34,5 +34,6 @@
 @import url(../blocks/popup/__cross-icon/popup__cross-icon.css);
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/popup/__name/popup__name.css);
-@import url(../blocks/popup-fullscreen/popup-fullscreen.css);
+
 @import url(../blocks/popup/_active/popup_active.css);
+@import url(../blocks/popup-fullscreen/popup-fullscreen.css);
