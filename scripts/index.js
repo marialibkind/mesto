@@ -9,7 +9,7 @@ const initialCards = [
 const openProfilePopupButton = document.querySelector(".profile__edit-btn");
 const popupProfile = document.querySelector(".popup-profile");
 const closeProfilePopupButton = document.querySelector(".cross");
-const formProfile = document.querySelector(".popup__form");
+const formProfile = document.querySelector(".form-profile");
 const nameInput = document.querySelector(".popup__text_type_name");
 const infoInput = document.querySelector(".popup__text_type_about");
 const profileName = document.querySelector(".profile__name");
@@ -34,12 +34,10 @@ closeFullPopupButton.addEventListener('click', () => closePopup(fullPopup));
 
 
 // открытие попапа для изменения профиля
-function openProfile() {
-    popupProfile.classList.add("popup_active");
-    nameInput.value = profileName.textContent;
-    infoInput.value = profileInfo.textContent;
-}
-openProfilePopupButton.addEventListener('click', openProfile);
+
+openProfilePopupButton.addEventListener('click', () => openPopup(popupProfile));
+nameInput.value = profileName.textContent;
+infoInput.value = profileInfo.textContent;
 
 
 // закрытие попапа для изменения профиля
