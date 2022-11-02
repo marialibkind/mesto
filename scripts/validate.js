@@ -63,8 +63,7 @@ const enableValidation = (config) => {
         const inputList = Array.from(form.querySelectorAll(inputSelector));
         const submitButton = form.querySelectorAll(buttonSelector);
         inputList.forEach((input) => {
-            input.addEventListener("input", handleFormInput(evt, form, config.inputErrorClass,
-                submitButton, config.inactiveButtonClass, config, inputList))
+            input.addEventListener("input", handleFormInput(form, config.inputErrorClass, submitButton, config.inactiveButtonClass, config, inputList))
         });
     });
 }
@@ -73,6 +72,6 @@ enableValidation({
     inputSelector: '.popup__text',
     submitButtonSelector: '.popup__submit-btn',
     inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_type_error',
+    inputErrorClass: 'popup__text_type_error',
     errorClass: 'popup__error_visible'
 });
