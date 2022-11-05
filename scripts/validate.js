@@ -63,7 +63,9 @@ const enableValidation = (config) => {
         const inputList = Array.from(form.querySelectorAll(inputSelector));
         const submitButton = form.querySelectorAll(buttonSelector);
         inputList.forEach((input) => {
-            input.addEventListener("input", handleFormInput(form, config.inputErrorClass, submitButton, config.inactiveButtonClass, config, inputList))
+            input.addEventListener("input", (evt) => {
+                handleFormInput(evt, form, config.inputErrorClass, submitButton, config.inactiveButtonClass, config, inputList);
+              });
         });
     });
 }
