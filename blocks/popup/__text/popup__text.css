@@ -10,6 +10,10 @@
     outline: none;
     padding: 0 0 9px;
 }
+.popup__text:hover{
+    
+}
+
 .popup__text:last-child{
     margin-bottom: 0;
     padding: 0;
