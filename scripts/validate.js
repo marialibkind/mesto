@@ -1,3 +1,12 @@
+const cheсkInputValidity = (inputElement, errorElement, invalidInputClass) => {
+    if (inputElement.validity.valid) {
+        hideInputError(inputElement, errorElement, invalidInputClass);
+    }
+    else {
+        showInputError(inputElement, errorElement, invalidInputClass);
+    }
+}
+
 const showInputError = (inputElement, errorElement, invalidInputClass) => {
     inputElement.classList.add(invalidInputClass);
     errorElement.textContent = inputElement.validationMessage;
@@ -22,6 +31,10 @@ const handleFormSubmit = (evt) => {
     evt.preventDefault();
 }
 
+const hasInvalidInput = (inputs) => {
+    return inputs.some((input) => !input.validity.valid);
+}
+
 const toggleButtonState = (config, inputs, submitButton) => {
     if (hasInvalidInput(inputs)) {
         disableButton(submitButton, config.inactiveButtonClass)
@@ -31,23 +44,10 @@ const toggleButtonState = (config, inputs, submitButton) => {
     }
 }
 
-const hasInvalidInput = (inputs) => {
-    return inputs.some((input) => !input.validity.valid);
-}
-
-const chekInputValidity = (inputElement, errorElement, invalidInputClass) => {
-    if (inputElement.validity.valid) {
-        hideInputError(inputElement, errorElement, invalidInputClass);
-    }
-    else {
-        showInputError(inputElement, errorElement, invalidInputClass);
-    }
-}
-
 const handleFormInput = (evt, form, invalidInputClass, formSubmitButtonElement, config, inputs) => {
     const inputElement = evt.target;
     const errorElement = form.querySelector(`.input-error-${inputElement.name}`);
-    checkInputValidity(inputElement, errorElement, invalidInputClass);
+    cheсkInputValidity(inputElement, errorElement, invalidInputClass);
     toggleButtonState(config, inputs, formSubmitButtonElement);
 }
 
