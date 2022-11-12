@@ -21,11 +21,13 @@ const fullPopup = document.querySelector(".popup-fullscreen");
 // открытие любого попапа
 function openPopup(popup) {
     popup.classList.add("popup_active");
+    document.addEventListener("Keydown", handleKeyPress)
 }
 
 // закрытие любого попапа
 function closePopup(popup) {
     popup.classList.remove("popup_active");
+    document.removeEventListener("Keydown", handleKeyPress)
 }
 
 // закрытие картинки на весь экран
@@ -119,3 +121,14 @@ function imageSubmitHandler(evt) {
     closePopup(popupImage);
 }
 imageForm.addEventListener('submit', imageSubmitHandler);
+
+//  
+
+function handleKeyPress (evt) {
+    if (evt.key === "Escape") {
+        const openedPopup = querySelector(".popup_active")
+        console.log(openedPopup)
+        closePopup(openedPopup)
+    }
+}
+

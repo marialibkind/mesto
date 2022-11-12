@@ -18,6 +18,7 @@ const hideInputError = (inputElement, errorElement, invalidInputClass) => {
 }
 
 const disableButton = (buttonElement, disabledButtonClass) => {
+    console.log(disabledButtonClass);
     buttonElement.classList.add(disabledButtonClass);
     buttonElement.disabled = true;
 }
@@ -32,10 +33,11 @@ const handleFormSubmit = (evt) => {
 }
 
 const hasInvalidInput = (inputs) => {
-    return inputs.some((input) => !input.validity.valid);
+    return inputs.some((input) => !input.validity.valid)
 }
 
 const toggleButtonState = (config, inputs, submitButton) => {
+    console.log(config)
     if (hasInvalidInput(inputs)) {
         disableButton(submitButton, config.inactiveButtonClass)
     }
@@ -64,7 +66,7 @@ const enableValidation = (config) => {
         const submitButton = form.querySelectorAll(buttonSelector);
         inputList.forEach((input) => {
             input.addEventListener("input", (evt) => {
-                handleFormInput(evt, form, config.inputErrorClass, submitButton, config.inactiveButtonClass, config, inputList);
+                handleFormInput(evt, form, config.inputErrorClass, submitButton, config, inputList);
               });
         });
     });
@@ -75,5 +77,5 @@ enableValidation({
     submitButtonSelector: '.popup__submit-btn',
     inactiveButtonClass: 'popup__button_disabled',
     inputErrorClass: 'popup__text_type_error',
-    errorClass: 'popup__error_visible'
+    errorClass: '.popup__error_visible'
 });
