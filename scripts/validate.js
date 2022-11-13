@@ -18,8 +18,7 @@ const hideInputError = (inputElement, errorElement, invalidInputClass) => {
 }
 
 const disableButton = (buttonElement, disabledButtonClass) => {
-    console.log(disabledButtonClass);
-    buttonElement.classList.add(disabledButtonClass);
+    buttonElement.classList.add(querySelectorAll.disabledButtonClass);
     buttonElement.disabled = true;
 }
 
@@ -63,7 +62,7 @@ const enableValidation = (config) => {
         form.addEventListener("submit", handleFormSubmit)
 
         const inputList = Array.from(form.querySelectorAll(inputSelector));
-        const submitButton = form.querySelectorAll(buttonSelector);
+        const submitButton = Array.from(form.querySelectorAll(buttonSelector));
         inputList.forEach((input) => {
             input.addEventListener("input", (evt) => {
                 handleFormInput(evt, form, config.inputErrorClass, submitButton, config, inputList);

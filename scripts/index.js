@@ -21,13 +21,13 @@ const fullPopup = document.querySelector(".popup-fullscreen");
 // открытие любого попапа
 function openPopup(popup) {
     popup.classList.add("popup_active");
-    document.addEventListener("Keydown", handleKeyPress)
+    document.addEventListener("keydown", handleKeyPress)
 }
 
 // закрытие любого попапа
 function closePopup(popup) {
     popup.classList.remove("popup_active");
-    document.removeEventListener("Keydown", handleKeyPress)
+    document.removeEventListener("keydown", handleKeyPress)
 }
 
 // закрытие картинки на весь экран
@@ -74,6 +74,8 @@ openImagePopupButton.addEventListener('click', () => openPopup(popupImage));
 
 // закрытие попапа для добавления картинки
 closeImagePopupButton.addEventListener('click', () => closePopup(popupImage));
+
+// 
 
 // создание картинки
 function createCard(link, name) {
@@ -126,7 +128,7 @@ imageForm.addEventListener('submit', imageSubmitHandler);
 
 function handleKeyPress (evt) {
     if (evt.key === "Escape") {
-        const openedPopup = querySelector(".popup_active")
+        const openedPopup = document.querySelector(".popup_active")
         console.log(openedPopup)
         closePopup(openedPopup)
     }
