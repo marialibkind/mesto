@@ -32,10 +32,13 @@ function closePopup(popup) {
 
 
 function closeOverlay(evt) {
-    if (evt.target.classList.contains('popup')) {
-      closePopup(evt.target);
+    document.querySelector('popup_active');
+    const container = document.querySelector(".form-profile")
+    if (evt.target!=container) {
+      closePopup();
       }
   };
+
 
 // закрытие картинки на весь экран
 const closeFullPopupButton = document.querySelector(".cross-full");

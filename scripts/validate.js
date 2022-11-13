@@ -13,7 +13,7 @@ const enableValidation = (config) => {
         form.addEventListener("submit", handleFormSubmit)
 
         const inputList = Array.from(form.querySelectorAll(inputSelector));
-        const submitButton = Array.from(form.querySelectorAll(buttonSelector));
+        const submitButton = form.querySelector(buttonSelector);
         inputList.forEach((input) => {
             input.addEventListener("input", (evt) => {
                 handleFormInput(evt, form, config.inputErrorClass, submitButton, config, inputList);
@@ -66,7 +66,6 @@ const hasInvalidInput = (inputs) => {
 }
 
 const toggleButtonState = (config, inputs, submitButton) => {
-    console.log(config)
     if (hasInvalidInput(inputs)) {
         disableButton(submitButton, config.inactiveButtonClass)
     }
