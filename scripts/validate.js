@@ -1,3 +1,37 @@
+
+const handleFormSubmit = (evt) => {
+    evt.preventDefault();
+}
+
+const enableValidation = (config) => {
+    const formSelector = config.formSelector;
+    const inputSelector = config.inputSelector;
+    const buttonSelector = config.submitButtonSelector;
+
+    const formList = Array.from(document.querySelectorAll(formSelector));
+    formList.forEach((form) => {
+        form.addEventListener("submit", handleFormSubmit)
+
+        const inputList = Array.from(form.querySelectorAll(inputSelector));
+        const submitButton = Array.from(form.querySelectorAll(buttonSelector));
+        inputList.forEach((input) => {
+            input.addEventListener("input", (evt) => {
+                handleFormInput(evt, form, config.inputErrorClass, submitButton, config, inputList);
+              });
+        });
+    });
+}
+
+enableValidation({
+    formSelector: '.popup__form',
+    inputSelector: '.popup__text',
+    submitButtonSelector: '.popup__submit-btn',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__text_type_error',
+    errorClass: '.popup__error_visible'
+});
+
+
 const cheсkInputValidity = (inputElement, errorElement, invalidInputClass) => {
     if (inputElement.validity.valid) {
         hideInputError(inputElement, errorElement, invalidInputClass);
@@ -18,17 +52,13 @@ const hideInputError = (inputElement, errorElement, invalidInputClass) => {
 }
 
 const disableButton = (buttonElement, disabledButtonClass) => {
-    buttonElement.classList.add(querySelectorAll.disabledButtonClass);
+    buttonElement.classList.add(disabledButtonClass);
     buttonElement.disabled = true;
 }
 
 const enableButton = (buttonElement, disabledButtonClass) => {
     buttonElement.classList.remove(disabledButtonClass);
     buttonElement.disabled = false;
-}
-
-const handleFormSubmit = (evt) => {
-    evt.preventDefault();
 }
 
 const hasInvalidInput = (inputs) => {
@@ -51,30 +81,3 @@ const handleFormInput = (evt, form, invalidInputClass, formSubmitButtonElement, 
     cheсkInputValidity(inputElement, errorElement, invalidInputClass);
     toggleButtonState(config, inputs, formSubmitButtonElement);
 }
-
-const enableValidation = (config) => {
-    const formSelector = config.formSelector;
-    const inputSelector = config.inputSelector;
-    const buttonSelector = config.submitButtonSelector;
-
-    const formList = Array.from(document.querySelectorAll(formSelector));
-    formList.forEach((form) => {
-        form.addEventListener("submit", handleFormSubmit)
-
-        const inputList = Array.from(form.querySelectorAll(inputSelector));
-        const submitButton = Array.from(form.querySelectorAll(buttonSelector));
-        inputList.forEach((input) => {
-            input.addEventListener("input", (evt) => {
-                handleFormInput(evt, form, config.inputErrorClass, submitButton, config, inputList);
-              });
-        });
-    });
-}
-enableValidation({
-    formSelector: '.popup__form',
-    inputSelector: '.popup__text',
-    submitButtonSelector: '.popup__submit-btn',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__text_type_error',
-    errorClass: '.popup__error_visible'
-});

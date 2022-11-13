@@ -30,6 +30,13 @@ function closePopup(popup) {
     document.removeEventListener("keydown", handleKeyPress)
 }
 
+
+function closeOverlay(evt) {
+    if (evt.target.classList.contains('popup')) {
+      closePopup(evt.target);
+      }
+  };
+
 // закрытие картинки на весь экран
 const closeFullPopupButton = document.querySelector(".cross-full");
 closeFullPopupButton.addEventListener('click', () => closePopup(fullPopup));
