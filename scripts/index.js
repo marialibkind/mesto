@@ -22,6 +22,7 @@ const fullPopup = document.querySelector(".popup-fullscreen");
 function openPopup(popup) {
     popup.classList.add("popup_active");
     document.addEventListener("keydown", handleKeyPress)
+    formProfile.reset();
 }
 
 // закрытие любого попапа
@@ -32,8 +33,8 @@ function closePopup(popup) {
 
 
 function closeOverlay(evt) {
-    document.querySelector('popup_active');
-    const container = document.querySelector(".form-profile")
+    const closedOverlay = document.firstElementChild('popup_active');
+    const container = document.firstElementChild(".popup__container")
     if (evt.target!=container) {
       closePopup();
       }
@@ -47,17 +48,19 @@ closeFullPopupButton.addEventListener('click', () => closePopup(fullPopup));
 
 // открытие попапа для изменения профиля
 
-openProfilePopupButton.addEventListener('click', () => openPopup(popupProfile));
-nameInput.value = profileName.textContent;
-infoInput.value = profileInfo.textContent;
-
+openProfilePopupButton.addEventListener('click', () => {
+    openPopup(popupProfile);
+    nameInput.value = profileName.textContent;
+    infoInput.value = profileInfo.textContent;
+    imageForm.reset();
+});
 
 // закрытие попапа для изменения профиля
 closeProfilePopupButton.addEventListener('click', () => closePopup(popupProfile));
 
 
 // сохранение информации при редактировании профиля
-function formSubmitHandlerProfile(evt) {
+function handleProfileFormSubmit(evt) {
     evt.preventDefault();
 
     profileName.textContent = nameInput.value;
@@ -65,15 +68,15 @@ function formSubmitHandlerProfile(evt) {
 
     closePopup(popupProfile);
 }
-formProfile.addEventListener('submit', formSubmitHandlerProfile);
+formProfile.addEventListener('submit', handleProfileFormSubmit);
 
 const openImagePopupButton = document.querySelector(".profile__add-btn");
 const closeImagePopupButton = document.querySelector(".cross-image");
 const elementTemplate = document.querySelector("#element-template").content;
 const popupImage = document.querySelector(".popup-image");
 const imageForm = document.querySelector(".form-add");
-const ImageNameInput = document.querySelector(".popup__text_type_image-name");
-const ImageSrcInput = document.querySelector(".popup__text_type_image-src");
+const imageNameInput = document.querySelector(".popup__text_type_image-name");
+const imageSrcInput = document.querySelector(".popup__text_type_image-src");
 const elementsList = document.querySelector('.elements__list');
 const popupImageFull = fullPopup.querySelector(".popup__image");
 const popupNameFull = fullPopup.querySelector(".popup__name");
@@ -125,14 +128,14 @@ initialCards.forEach((card) => {
 })
 
 //  сохранение информации
-function imageSubmitHandler(evt) {
+function handleSubmitImage(evt) {
     evt.preventDefault();
-    const imageName = ImageNameInput.value;
-    const imageLink = ImageSrcInput.value;
+    const imageName = imageNameInput.value;
+    const imageLink = imageSrcInput.value;
     renderCard(createCard(imageLink, imageName));
     closePopup(popupImage);
 }
-imageForm.addEventListener('submit', imageSubmitHandler);
+imageForm.addEventListener('submit', handleSubmitImage);
 
 //  
 
