@@ -31,15 +31,14 @@ function closePopup(popup) {
     document.removeEventListener("keydown", handleKeyPress)
 }
 
-
-function closeOverlay(evt) {
-    const closedOverlay = document.firstElementChild('popup_active');
-    const container = document.firstElementChild(".popup__container")
-    if (evt.target!=container) {
-      closePopup();
-      }
-  };
-
+const overleyClosePopups = Array.from(document.querySelectorAll(".popup"));
+overleyClosePopups.forEach((overley) => {
+  overley.addEventListener("click", (evt) => {
+    if (evt.target.classList.contains('popup_active')) {
+      closePopup(evt.target);
+    }
+  });
+});              
 
 // закрытие картинки на весь экран
 const closeFullPopupButton = document.querySelector(".cross-full");
