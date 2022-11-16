@@ -15,6 +15,7 @@ const infoInput = document.querySelector(".popup__text_type_about");
 const profileName = document.querySelector(".profile__name");
 const profileInfo = document.querySelector(".profile__info");
 
+  
 // картинка попап на весь экран
 const fullPopup = document.querySelector(".popup-fullscreen");
 
@@ -22,7 +23,6 @@ const fullPopup = document.querySelector(".popup-fullscreen");
 function openPopup(popup) {
     popup.classList.add("popup_active");
     document.addEventListener("keydown", handleKeyPress)
-    formProfile.reset();
 }
 
 // закрытие любого попапа
@@ -51,7 +51,6 @@ openProfilePopupButton.addEventListener('click', () => {
     openPopup(popupProfile);
     nameInput.value = profileName.textContent;
     infoInput.value = profileInfo.textContent;
-    imageForm.reset();
 });
 
 // закрытие попапа для изменения профиля
@@ -132,11 +131,19 @@ function handleSubmitImage(evt) {
     const imageName = imageNameInput.value;
     const imageLink = imageSrcInput.value;
     renderCard(createCard(imageLink, imageName));
+    imageForm.reset();
     closePopup(popupImage);
 }
 imageForm.addEventListener('submit', handleSubmitImage);
 
-//  
+imageForm.addEventListener('reset', () => {
+    setTimeout(() => {
+       const inputList = imageForm.querySelectorAll('.popup__text');
+       const submitButton = imageForm.querySelector('.popup__submit-btn');
+  
+       toggleButtonState(validationConfig, inputList, submitButton);  
+    }, 0);
+  });
 
 function handleKeyPress (evt) {
     if (evt.key === "Escape") {
