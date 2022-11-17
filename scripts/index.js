@@ -136,15 +136,6 @@ function handleSubmitImage(evt) {
 }
 imageForm.addEventListener('submit', handleSubmitImage);
 
-imageForm.addEventListener('reset', () => {
-    setTimeout(() => {
-       const inputList = imageForm.querySelectorAll('.popup__text');
-       const submitButton = imageForm.querySelector('.popup__submit-btn');
-  
-       toggleButtonState(validationConfig, inputList, submitButton);  
-    }, 0);
-  });
-
 function handleKeyPress (evt) {
     if (evt.key === "Escape") {
         const openedPopup = document.querySelector(".popup_active")
