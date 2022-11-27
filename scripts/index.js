@@ -1,3 +1,5 @@
+import Card from `./Card.js`;
+import { FormValidator } from "./FormValidator";
 const initialCards = [
     { name: 'Архыз', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg' },
     { name: 'Челябинская область', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg' },
@@ -6,6 +8,7 @@ const initialCards = [
     { name: 'Холмогорский район', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg' },
     { name: 'Байкал', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg' }
 ]
+
 const openProfilePopupButton = document.querySelector(".profile__edit-btn");
 const popupProfile = document.querySelector(".popup-profile");
 const closeProfilePopupButton = document.querySelector(".cross");
@@ -88,36 +91,10 @@ closeImagePopupButton.addEventListener('click', () => closePopup(popupImage));
 
 // 
 
-// создание картинки
-function createCard(link, name) {
-    const element = elementTemplate.querySelector(".element").cloneNode(true);
-    const elementImage = element.querySelector(".element__image");
-    const elementName = element.querySelector(".element__name");
-    elementImage.src = link;
-    elementName.textContent = name;
-    elementImage.alt = name;
-    element.querySelector(".element__like").addEventListener('click', function (evt) {
-        const likeButton = evt.target;
-        likeButton.classList.toggle("element__like_active");
-    })
-    //   удаление картинки
-    element.querySelector(".element__bin").addEventListener('click', function (evt) {
-        element.remove();
-    });
 
-    // попап при открытии картинки на большой экран
-    elementImage.addEventListener('click', () => {
-        openPopup(fullPopup);
-        popupImageFull.setAttribute('src', link);
-        popupImageFull.setAttribute('alt', name);
-        popupNameFull.textContent = name;
-
-    });
-    return element;
-};
 
 // добавление картинки
-function renderCard(card) {
+_renderCard(card) {
     elementsList.prepend(card);
 }
 
@@ -126,7 +103,7 @@ initialCards.forEach((card) => {
 })
 
 //  сохранение информации
-function handleSubmitImage(evt) {
+_handleSubmitImage(evt) {
     evt.preventDefault();
     const imageName = imageNameInput.value;
     const imageLink = imageSrcInput.value;
@@ -136,7 +113,7 @@ function handleSubmitImage(evt) {
 }
 imageForm.addEventListener('submit', handleSubmitImage);
 
-function handleKeyPress (evt) {
+_handleKeyPress (evt) {
     if (evt.key === "Escape") {
         const openedPopup = document.querySelector(".popup_active")
         console.log(openedPopup)
