@@ -1,4 +1,7 @@
-class FormValidator {
+{
+    type: module
+}
+import class FormValidator {
     const validationConfig =  {
     formSelector: '.popup__form',
     inputSelector: '.popup__text',
@@ -10,4 +13,3 @@ class FormValidator {
 
 enableValidation(validationConfig);
 }
-export FormValidator from `./FormValidator.js`;

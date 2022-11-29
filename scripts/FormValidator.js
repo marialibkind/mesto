@@ -1,3 +1,6 @@
+{
+    type: module
+}
 export class FormValidator{
     constructor()
     enableValidation = (config) => {

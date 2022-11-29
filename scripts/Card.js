@@ -1,3 +1,4 @@
+
 export class Card {
     constructor(element, elementTemplate){
         this._link = element.link;
