@@ -1,4 +1,4 @@
-import Card from "./Card.js";
+import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator";
 const initialCards = [
     { name: 'Архыз', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg' },
@@ -95,7 +95,7 @@ initialCards.forEach((card) => {
 
 
 //  сохранение информации
-_handleSubmitImage(evt) {
+function handleSubmitImage(evt) {
     evt.preventDefault();
     const imageName = imageNameInput.value;
     const imageLink = imageSrcInput.value;
@@ -105,7 +105,7 @@ _handleSubmitImage(evt) {
 }
 imageForm.addEventListener('submit', handleSubmitImage);
 
-_handleKeyPress (evt) {
+function handleKeyPress (evt) {
     if (evt.key === "Escape") {
         const openedPopup = document.querySelector(".popup_active")
         console.log(openedPopup)
