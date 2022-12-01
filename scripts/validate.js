@@ -1,6 +1,4 @@
-{
-    type: module
-}
+
 import class FormValidator {
     const validationConfig =  {
     formSelector: '.popup__form',

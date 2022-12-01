@@ -19,23 +19,28 @@ export class Card {
         elementImage.src = link;
         elementName.textContent = this._name;
         elementImage.alt = this._name;
-        element.querySelector(".element__like").addEventListener('click', function (evt) {
+    };
+    like () {
             const likeButton = evt.target;
             likeButton.classList.toggle("element__like_active");
-        })
-        //   удаление картинки
-        element.querySelector(".element__bin").addEventListener('click', function (evt) {
-            element.remove();
-        });
-    
-        // попап при открытии картинки на большой экран
-        elementImage.addEventListener('click', () => {
-            openPopup(fullPopup);
-            popupImageFull.setAttribute('src', link);
-            popupImageFull.setAttribute('alt', this._name);
-            popupNameFull.textContent = this._name;
-    
-        });
+        }
+    deleteCard () {
+            this._element.remove();
+        
+    }
+    open(){
+        openPopup(fullPopup);
+        popupImageFull.setAttribute('src', link);
+        popupImageFull.setAttribute('alt', this._name);
+        popupNameFull.textContent = this._name;
         return element;
-    };
+    }
+    setEventListeners() {
+        element.querySelector(".element__like").addEventListener('click', like ());
+        element.querySelector(".element__bin").addEventListener('click', deleteCard ());
+        elementImage.addEventListener('click', open());
+    }
+    renderCard(card) {
+        elementsList.prepend(card);
+    }
 }

@@ -1,8 +1,5 @@
-import Card from `./Card.js`;
+import Card from "./Card.js";
 import { FormValidator } from "./FormValidator";
-{
-    type: module
-}
 const initialCards = [
     { name: 'Архыз', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg' },
     { name: 'Челябинская область', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg' },
@@ -92,18 +89,10 @@ openImagePopupButton.addEventListener('click', () => openPopup(popupImage));
 // закрытие попапа для добавления картинки
 closeImagePopupButton.addEventListener('click', () => closePopup(popupImage));
 
-// 
-
-
-
-// добавление картинки
-_renderCard(card) {
-    elementsList.prepend(card);
-}
-
 initialCards.forEach((card) => {
     renderCard(createCard(card.link, card.name));
 })
+
 
 //  сохранение информации
 _handleSubmitImage(evt) {
