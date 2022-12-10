@@ -1,6 +1,8 @@
-
-export class FormValidator{
-    constructor()
+    export class FormValidator{
+    constructor(validationConfig, formElement) {
+        this._validationConfig = validationConfig;
+        this._inputsList = formElement.document.querySelector(".form-profile");
+    }
     enableValidation = (config) => {
         const formSelector = config.formSelector;
         const inputSelector = config.inputSelector;
