@@ -98,7 +98,6 @@ function createCard(card) {
 } 
 
 initialCards.forEach((card) => {
-    // console.log(elementTemplate)
     renderCard(createCard(card));
 })
 
