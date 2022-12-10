@@ -17,6 +17,7 @@ export class Card {
         const image = this._element.querySelector('.element__image');
         image.src = this._link;
         image.alt = this._name;
+        return this._element;
     };
     like () {
             const likeButton = evt.target;
