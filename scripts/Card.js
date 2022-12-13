@@ -20,11 +20,12 @@ export class Card {
         return this._element;
     };
     like () {
-            const likeButton = evt.target;
-            likeButton.classList.toggle("element__like_active");
+        const likeButton =  this._element.querySelector('.element__like');
+        likeButton.classList.toggle("element__like_active");
+        console.log(likeButton)
         }
     deleteCard () {
-            this._element.remove();
+        this._element.remove();
         
     }
     open(){
@@ -35,9 +36,10 @@ export class Card {
         return element;
     }
     setEventListeners() {
-        element.querySelector(".element__like").addEventListener('click', like ());
-        element.querySelector(".element__bin").addEventListener('click', deleteCard ());
-        elementImage.addEventListener('click', open());
+        this._element.addEventListener('click', this.like)
+        this._element.addEventListener('click', this.deleteCard)
+        this._element.addEventListener('click', this.open)
+        
     }
     renderCard(card) {
         elementsList.prepend(card);
