@@ -19,16 +19,16 @@ export class Card {
         image.alt = this._name;
         return this._element;
     };
-    like () {
-        const likeButton =  this._element.querySelector('.element__like');
+    _like () {
+        const likeButton =  this._element.querySelector('.element__like').addEventListener
         likeButton.classList.toggle("element__like_active");
         console.log(likeButton)
         }
-    deleteCard () {
+    _deleteCard () {
         this._element.remove();
         
     }
-    open(){
+    _open(){
         openPopup(fullPopup);
         popupImageFull.setAttribute('src', link);
         popupImageFull.setAttribute('alt', this._name);
@@ -36,9 +36,9 @@ export class Card {
         return element;
     }
     setEventListeners() {
-        this._element.addEventListener('click', this.like)
-        this._element.addEventListener('click', this.deleteCard)
-        this._element.addEventListener('click', this.open)
+        this._element.querySelector('.element__like').addEventListener('click', () => { this._like() });
+        this._element.querySelector('.element__bin').addEventListener('click', () => { this._deleteCard() });
+        this._element.querySelector('.element__image').addEventListener('click', () => { this._open() });
         
     }
     renderCard(card) {

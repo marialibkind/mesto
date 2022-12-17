@@ -97,8 +97,8 @@ function createCard(card) {
     return cardElement
 } 
 
-initialCards.forEach((card) => {
-    renderCard(createCard(card));
+initialCards.forEach((imageLink, imageName) => {
+    renderCard(createCard(imageLink, imageName));
 })
 
 
@@ -107,7 +107,8 @@ function handleSubmitImage(evt) {
     evt.preventDefault();
     const imageName = imageNameInput.value;
     const imageLink = imageSrcInput.value;
-    renderCard(createCard(imageLink, imageName));
+    const newNewCard = { name: imageName, link: imageLink };
+    renderCard(createCard(newNewCard));
     imageForm.reset();
     closePopup(popupImage);
 }
@@ -121,7 +122,7 @@ function handleKeyPress (evt) {
     }
 }
 function renderCard(card) {
- 
+  
 
     elementsList.prepend(card);
  
