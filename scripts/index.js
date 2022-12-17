@@ -92,7 +92,7 @@ closeImagePopupButton.addEventListener('click', () => closePopup(popupImage));
 
 
 function createCard(card) {
-    const newCard = new Card(card)
+    const newCard = newCard(card)
     const cardElement = newCard.createCard();
     return cardElement
 } 
