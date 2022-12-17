@@ -92,7 +92,7 @@ closeImagePopupButton.addEventListener('click', () => closePopup(popupImage));
 
 
 function createCard(card) {
-    const newCard = new Card(card, elementTemplate)
+    const newCard = new Card(card)
     const cardElement = newCard.createCard();
     return cardElement
 } 
@@ -108,6 +108,7 @@ function handleSubmitImage(evt) {
     const imageName = imageNameInput.value;
     const imageLink = imageSrcInput.value;
     const newNewCard = createCard({ name: imageName, link: imageLink });
+    debagger;
     renderCard(createCard(newNewCard));
     imageForm.reset();
     closePopup(popupImage);
