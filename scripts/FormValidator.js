@@ -1,4 +1,4 @@
-    export class FormValidator{
+    export class FormValidatorrm{
     constructor(validationConfig, formElement) {
         this._validationConfig = validationConfig;
         this._inputsList = formElement.document.querySelector(".form-profile");

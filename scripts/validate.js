@@ -1,6 +1,5 @@
-
-import class FormValidator {
-    const validationConfig =  {
+ export class Validate {
+    validationConfig =  {
     formSelector: '.popup__form',
     inputSelector: '.popup__text',
     submitButtonSelector: '.popup__submit-btn',

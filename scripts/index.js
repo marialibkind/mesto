@@ -1,5 +1,7 @@
 import { Card } from "./Card.js";
-import FormValidator from "./FormValidator.js";
+import { Validate } from "./validate.js";
+
+
 const initialCards = [
     { name: 'Архыз', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg' },
     { name: 'Челябинская область', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg' },
@@ -52,7 +54,6 @@ openProfilePopupButton.addEventListener('click', () => {
     openPopup(popupProfile);
     nameInput.value = profileName.textContent;
     infoInput.value = profileInfo.textContent;
-    console.log('CLICK')
 });
 
 // закрытие попапа для изменения профиля
@@ -77,7 +78,11 @@ const elementsList = document.querySelector('.elements__list');
 
 // открытие попапа для добавления картинки
 
-openImagePopupButton.addEventListener('click', () => openPopup(popupImage) );console.log('CLICK')
+
+openImagePopupButton.addEventListener('click', () => {
+    openPopup(popupImage);
+    console.log('CLICK')
+    });
 
 // закрытие попапа для добавления картинки
 closeImagePopupButton.addEventListener('click', () => closePopup(popupImage));
