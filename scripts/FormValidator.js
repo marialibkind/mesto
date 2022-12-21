@@ -1,4 +1,11 @@
-    export class FormValidatorrm{
+validationConfig =  {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__text',
+    submitButtonSelector: '.popup__submit-btn',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__text_type_error',
+        errorClass: '.popup__error_visible'}
+   export class FormValidator{
     constructor(validationConfig, formElement) {
         this._validationConfig = validationConfig;
         this._inputsList = formElement.document.querySelector(".form-profile");

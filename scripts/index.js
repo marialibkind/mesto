@@ -1,6 +1,5 @@
 import { Card } from "./Card.js";
-import { Validate } from "./validate.js";
-
+import { FormValidator } from "./FormValidator.js";
 
 const initialCards = [
     { name: 'Архыз', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg' },
