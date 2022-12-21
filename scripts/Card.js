@@ -1,9 +1,9 @@
 export class Card {
-    constructor(element, elementTemplate){
+    constructor(element){
         this._link = element.link;
         this._name = element.name;
         this._alt = element.name;
-        this._template = elementTemplate;
+        this._template = document.querySelector("#element-template").content;
     }
 
     _getTemplate(){
@@ -18,7 +18,7 @@ export class Card {
         image.src = this._link;
         image.alt = this._name;
         return this._element;
-    };
+    }
     _like () {
         const likeButton =  this._element.querySelector('.element__like').addEventListener
         likeButton.classList.toggle("element__like_active");

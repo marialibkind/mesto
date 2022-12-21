@@ -53,7 +53,7 @@
                 enableButton(submitButton, config.inactiveButtonClass)
             }
         }
-        _cheсkInputValidity = (inputElement, errorElement, invalidInputClass) => {
+        _checkInputValidity = (inputElement, errorElement, invalidInputClass) => {
             if (inputElement.validity.valid) {
                 hideInputError(inputElement, errorElement, invalidInputClass);
             }
@@ -75,7 +75,7 @@
         _handleFormInput = (evt, form, invalidInputClass, formSubmitButtonElement, config, inputs) => {
             const inputElement = evt.target;
             const errorElement = form.querySelector(`.input-error-${inputElement.name}`);
-            cheсkInputValidity(inputElement, errorElement, invalidInputClass);
+            checkInputValidity(inputElement, errorElement, invalidInputClass);
             toggleButtonState(config, inputs, formSubmitButtonElement);
         }
     }

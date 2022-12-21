@@ -1,5 +1,5 @@
 import { Card } from "./Card.js";
-import { FormValidator } from "./FormValidator.js";
+import FormValidator from "./FormValidator.js";
 const initialCards = [
     { name: 'Архыз', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg' },
     { name: 'Челябинская область', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg' },
@@ -17,7 +17,6 @@ const nameInput = document.querySelector(".popup__text_type_name");
 const infoInput = document.querySelector(".popup__text_type_about");
 const profileName = document.querySelector(".profile__name");
 const profileInfo = document.querySelector(".profile__info");
-
   
 // картинка попап на весь экран
 const fullPopup = document.querySelector(".popup-fullscreen");
@@ -47,60 +46,51 @@ overleyClosePopups.forEach((overley) => {
 const closeFullPopupButton = document.querySelector(".cross-full");
 closeFullPopupButton.addEventListener('click', () => closePopup(fullPopup));
 
-
 // открытие попапа для изменения профиля
 
 openProfilePopupButton.addEventListener('click', () => {
     openPopup(popupProfile);
     nameInput.value = profileName.textContent;
     infoInput.value = profileInfo.textContent;
+    console.log('CLICK')
 });
 
 // закрытие попапа для изменения профиля
 closeProfilePopupButton.addEventListener('click', () => closePopup(popupProfile));
 
-
 // сохранение информации при редактировании профиля
 function handleProfileFormSubmit(evt) {
     evt.preventDefault();
-
     profileName.textContent = nameInput.value;
     profileInfo.textContent = infoInput.value;
-
     closePopup(popupProfile);
 }
 formProfile.addEventListener('submit', handleProfileFormSubmit);
 
 const openImagePopupButton = document.querySelector(".profile__add-btn");
 const closeImagePopupButton = document.querySelector(".cross-image");
-const elementTemplate = document.querySelector("#element-template").content;
 const popupImage = document.querySelector(".popup-image");
 const imageForm = document.querySelector(".form-add");
 const imageNameInput = document.querySelector(".popup__text_type_image-name");
 const imageSrcInput = document.querySelector(".popup__text_type_image-src");
 const elementsList = document.querySelector('.elements__list');
-const popupImageFull = fullPopup.querySelector(".popup__image");
-const popupNameFull = fullPopup.querySelector(".popup__name");
 
 // открытие попапа для добавления картинки
-openImagePopupButton.addEventListener('click', () => openPopup(popupImage));
 
+openImagePopupButton.addEventListener('click', () => openPopup(popupImage) );console.log('CLICK')
 
 // закрытие попапа для добавления картинки
 closeImagePopupButton.addEventListener('click', () => closePopup(popupImage));
 
-
-
-function createCard(card) {
-    const newCard = newCard(card)
+function createCard(element) {
+    const newCard = new Card(element);
     const cardElement = newCard.createCard();
     return cardElement
 } 
 
-initialCards.forEach((imageLink, imageName) => {
-    renderCard(createCard(imageLink, imageName));
+initialCards.forEach((element) => {
+    renderCard(createCard(element));
 })
-
 
 //  сохранение информации
 function handleSubmitImage(evt) {
@@ -122,15 +112,9 @@ function handleKeyPress (evt) {
         closePopup(openedPopup)
     }
 }
+
 function renderCard(card) {
   
-
     elementsList.prepend(card);
  
-
 }
- 
-
-
- 
-
