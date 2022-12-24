@@ -1,5 +1,7 @@
+
 export class Card {
-    constructor(element){
+    constructor(element, onClick){
+        
         this._link = element.link;
         this._name = element.name;
         this._alt = element.name;
@@ -11,16 +13,8 @@ export class Card {
         return cardElement;
     }
 
-    createCard () {
-        this._element = this._getTemplate();
-        this._element.querySelector('.element__name').textContent = this._name;
-        const image = this._element.querySelector('.element__image');
-        image.src = this._link;
-        image.alt = this._name;
-        return this._element;
-    }
     _like () {
-        const likeButton =  this._element.querySelector('.element__like').addEventListener
+        const likeButton =  this._element.querySelector('.element__like');
         likeButton.classList.toggle("element__like_active");
         console.log(likeButton)
         }
@@ -41,7 +35,20 @@ export class Card {
         this._element.querySelector('.element__image').addEventListener('click', () => { this._open() });
         
     }
+
+    createCard () {
+        this._element = this._getTemplate();
+        this._element.querySelector('.element__name').textContent = this._name;
+        const image = this._element.querySelector('.element__image');
+        image.src = this._link;
+        image.alt = this._name;
+        this.setEventListeners();
+        return this._element;
+        
+    }
+   
     renderCard(card) {
         elementsList.prepend(card);
     }
+
 }

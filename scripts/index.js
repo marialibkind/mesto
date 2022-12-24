@@ -23,7 +23,7 @@ const profileInfo = document.querySelector(".profile__info");
 const fullPopup = document.querySelector(".popup-fullscreen");
 
 // открытие любого попапа
-function openPopup(popup) {
+export function openPopup(popup) {
     popup.classList.add("popup_active");
     document.addEventListener("keydown", handleKeyPress)
 }
@@ -86,10 +86,15 @@ openImagePopupButton.addEventListener('click', () => {
 // закрытие попапа для добавления картинки
 closeImagePopupButton.addEventListener('click', () => closePopup(popupImage));
 
+const handleClick = () => { console.log('CLICK')}
+
+
+
 function createCard(element) {
     const newCard = new Card(element);
     const cardElement = newCard.createCard();
-    return cardElement
+    return cardElement, handleClick;
+    
 } 
 
 initialCards.forEach((element) => {
