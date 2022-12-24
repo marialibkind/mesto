@@ -1,6 +1,7 @@
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
 
+
 const initialCards = [
     { name: 'Архыз', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg' },
     { name: 'Челябинская область', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg' },
@@ -20,7 +21,7 @@ const profileName = document.querySelector(".profile__name");
 const profileInfo = document.querySelector(".profile__info");
   
 // картинка попап на весь экран
-const fullPopup = document.querySelector(".popup-fullscreen");
+export const fullPopup = document.querySelector(".popup-fullscreen");
 
 // открытие любого попапа
 export function openPopup(popup) {
@@ -74,6 +75,9 @@ const imageForm = document.querySelector(".form-add");
 const imageNameInput = document.querySelector(".popup__text_type_image-name");
 const imageSrcInput = document.querySelector(".popup__text_type_image-src");
 const elementsList = document.querySelector('.elements__list');
+export const popupImageFull = fullPopup.querySelector(".popup__image");
+export const popupNameFull = fullPopup.querySelector(".popup__name");
+
 
 // открытие попапа для добавления картинки
 
@@ -93,7 +97,7 @@ const handleClick = () => { console.log('CLICK')}
 function createCard(element) {
     const newCard = new Card(element);
     const cardElement = newCard.createCard();
-    return cardElement, handleClick;
+    return cardElement;
     
 } 
 

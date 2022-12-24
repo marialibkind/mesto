@@ -1,6 +1,6 @@
-
+import { openPopup, fullPopup, popupImageFull, popupNameFull } from "./index.js";
 export class Card {
-    constructor(element, onClick){
+    constructor(element){
         
         this._link = element.link;
         this._name = element.name;
@@ -24,10 +24,10 @@ export class Card {
     }
     _open(){
         openPopup(fullPopup);
-        popupImageFull.setAttribute('src', link);
+        popupImageFull.setAttribute('src', this._link);
         popupImageFull.setAttribute('alt', this._name);
         popupNameFull.textContent = this._name;
-        return element;
+        
     }
     setEventListeners() {
         this._element.querySelector('.element__like').addEventListener('click', () => { this._like() });
