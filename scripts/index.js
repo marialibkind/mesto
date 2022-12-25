@@ -111,7 +111,6 @@ function handleSubmitImage(evt) {
     const imageName = imageNameInput.value;
     const imageLink = imageSrcInput.value;
     const newNewCard = createCard({ name: imageName, link: imageLink });
-    debagger;
     renderCard(createCard(newNewCard));
     imageForm.reset();
     closePopup(popupImage);
