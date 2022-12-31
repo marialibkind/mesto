@@ -1,6 +1,6 @@
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
-
+import { formValidator } from "./FormValidator.js";
 
 const initialCards = [
     { name: 'Архыз', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg' },
@@ -84,13 +84,12 @@ export const popupNameFull = fullPopup.querySelector(".popup__name");
 
 openImagePopupButton.addEventListener('click', () => {
     openPopup(popupImage);
-    console.log('CLICK')
     });
 
 // закрытие попапа для добавления картинки
 closeImagePopupButton.addEventListener('click', () => closePopup(popupImage));
 
-const handleClick = () => { console.log('CLICK')}
+
 
 
 
@@ -129,4 +128,14 @@ function renderCard(card) {
   
     elementsList.prepend(card);
  
+}
+
+const popupImageValidation = new formValidator(validationConfig, popupImage)
+const popupProfileValidation = new formValidator(validationConfig, popupImage)
+
+function formValidator(popupImageValidation) => {
+    popupProfileValidation.FormValidator
+}
+function formValidator(popupProfileValidation) => {
+    popupProfileValidation.FormValidator
 }
