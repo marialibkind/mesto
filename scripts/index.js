@@ -1,7 +1,6 @@
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
-import { formValidator } from "./FormValidator.js";
-
+import { validationConfig } from "./FormValidator.js";
 const initialCards = [
     { name: 'Архыз', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg' },
     { name: 'Челябинская область', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg' },
@@ -130,12 +129,8 @@ function renderCard(card) {
  
 }
 
-const popupImageValidation = new formValidator(validationConfig, popupImage)
-const popupProfileValidation = new formValidator(validationConfig, popupImage)
+const popupImageValidation = new FormValidator(validationConfig, popupImage)
+const popupProfileValidation = new FormValidator(validationConfig, popupProfile)
 
-function formValidator(popupImageValidation) => {
-    popupProfileValidation.FormValidator
-}
-function formValidator(popupProfileValidation) => {
-    popupProfileValidation.FormValidator
-}
+popupImageValidation.enableValidation();
+popupProfileValidation.enableValidation();
