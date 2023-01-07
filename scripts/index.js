@@ -18,7 +18,7 @@ const nameInput = document.querySelector(".popup__text_type_name");
 const infoInput = document.querySelector(".popup__text_type_about");
 const profileName = document.querySelector(".profile__name");
 const profileInfo = document.querySelector(".profile__info");
-  
+
 // картинка попап на весь экран
 export const fullPopup = document.querySelector(".popup-fullscreen");
 
@@ -36,12 +36,12 @@ function closePopup(popup) {
 
 const overleyClosePopups = Array.from(document.querySelectorAll(".popup"));
 overleyClosePopups.forEach((overley) => {
-  overley.addEventListener("click", (evt) => {
-    if (evt.target.classList.contains('popup_active')) {
-      closePopup(evt.target);
-    }
-  });
-});              
+    overley.addEventListener("click", (evt) => {
+        if (evt.target.classList.contains('popup_active')) {
+            closePopup(evt.target);
+        }
+    });
+});
 
 // закрытие картинки на весь экран
 const closeFullPopupButton = document.querySelector(".cross-full");
@@ -83,21 +83,17 @@ export const popupNameFull = fullPopup.querySelector(".popup__name");
 
 openImagePopupButton.addEventListener('click', () => {
     openPopup(popupImage);
-    });
+});
 
 // закрытие попапа для добавления картинки
 closeImagePopupButton.addEventListener('click', () => closePopup(popupImage));
-
-
-
-
 
 function createCard(element) {
     const newCard = new Card(element);
     const cardElement = newCard.createCard();
     return cardElement;
-    
-} 
+
+}
 
 initialCards.forEach((element) => {
     renderCard(createCard(element));
@@ -109,13 +105,13 @@ function handleSubmitImage(evt) {
     const imageName = imageNameInput.value;
     const imageLink = imageSrcInput.value;
     const newNewCard = createCard({ name: imageName, link: imageLink });
-    renderCard(createCard(newNewCard));
+    renderCard(newNewCard);
     imageForm.reset();
     closePopup(popupImage);
 }
 imageForm.addEventListener('submit', handleSubmitImage);
 
-function handleKeyPress (evt) {
+function handleKeyPress(evt) {
     if (evt.key === "Escape") {
         const openedPopup = document.querySelector(".popup_active")
         console.log(openedPopup)
@@ -124,9 +120,9 @@ function handleKeyPress (evt) {
 }
 
 function renderCard(card) {
-  
+
     elementsList.prepend(card);
- 
+
 }
 
 const popupImageValidation = new FormValidator(validationConfig, popupImage)

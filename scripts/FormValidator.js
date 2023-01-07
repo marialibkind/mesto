@@ -82,10 +82,10 @@ export class FormValidator {
         errorElement.textContent = "";
     }
 
-    _handleFormInput = (evt, form, invalidInputClass, formSubmitButtonElement, config, inputs) => {
+    _handleFormInput = (evt, form, invalidInputClass, formSubmitButtonElement, inputs) => {
         const inputElement = evt.target;
         const errorElement = form.querySelector(`.input-error-${inputElement.name}`);
         this._checkInputValidity(inputElement, errorElement, invalidInputClass);
-        this._toggleButtonState(config, inputs, formSubmitButtonElement);
+        this._toggleButtonState(inputs, formSubmitButtonElement);
     }
 }
