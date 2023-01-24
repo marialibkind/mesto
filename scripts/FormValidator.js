@@ -1,5 +1,6 @@
 export const validationConfig =
 {
+    formProfile: ".form-profile",
     formSelector: '.popup__form',
     inputSelector: '.popup__text',
     submitButtonSelector: '.popup__submit-btn',
@@ -11,33 +12,30 @@ export const validationConfig =
 export class FormValidator {
     constructor(validationConfig, formElement) {
         this._validationConfig = validationConfig;
-        this._inputsList = formElement.querySelector(".form-profile");
+     
+        this._formElement = formElement;
+        this._formSelector = this._validationConfig.formSelector;
+        this._inputSelector = this._validationConfig.inputSelector;
+        this._buttonSelector = this._validationConfig.submitButtonSelector;
     }
     enableValidation = () => {
-        const formSelector = this._validationConfig.formSelector;
-        const inputSelector = this._validationConfig.inputSelector;
-        const buttonSelector = this._validationConfig.submitButtonSelector;
-
-        const formList = Array.from(document.querySelectorAll(formSelector));
-        formList.forEach((form) => {
-            form.addEventListener("submit", this._handleFormSubmit)
-            const inputList = Array.from(form.querySelectorAll(inputSelector));
-            const submitButton = form.querySelector(buttonSelector);
-
+        this._formElement.addEventListener("submit", this._handleFormSubmit)
+            const inputList = Array.from(this._formElement.querySelectorAll( this._inputSelector));
+            const submitButton = this._formElement.querySelector( this._buttonSelector);
             inputList.forEach((input) => {
                 input.addEventListener("input", (evt) => {
-                    this._handleFormInput(evt, form,  this._validationConfig.inputErrorClass, submitButton, inputList);
+                    this._handleFormInput(evt, this._formElement,  this._validationConfig.inputErrorClass, submitButton, inputList);
                 });
             });
             this._toggleButtonState(inputList, submitButton);
-            form.addEventListener('reset', () => {
+            this._formElement.addEventListener('reset', () => {
                 setTimeout(() => {
                     this._toggleButtonState(inputList, submitButton);
                 }, 0);
             });
-
-        });
+        
     }
+ 
     _handleFormSubmit = (evt) => {
         evt.preventDefault();
     }

@@ -10,6 +10,7 @@ const initialCards = [
     { name: 'Байкал', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg' }
 ]
 
+
 const openProfilePopupButton = document.querySelector(".profile__edit-btn");
 const popupProfile = document.querySelector(".popup-profile");
 const closeProfilePopupButton = document.querySelector(".cross");
@@ -70,7 +71,7 @@ formProfile.addEventListener('submit', handleProfileFormSubmit);
 const openImagePopupButton = document.querySelector(".profile__add-btn");
 const closeImagePopupButton = document.querySelector(".cross-image");
 const popupImage = document.querySelector(".popup-image");
-const imageForm = document.querySelector(".form-add");
+export const imageForm = document.querySelector(".form-add");
 const imageNameInput = document.querySelector(".popup__text_type_image-name");
 const imageSrcInput = document.querySelector(".popup__text_type_image-src");
 const elementsList = document.querySelector('.elements__list');
@@ -88,8 +89,10 @@ openImagePopupButton.addEventListener('click', () => {
 // закрытие попапа для добавления картинки
 closeImagePopupButton.addEventListener('click', () => closePopup(popupImage));
 
-function createCard(element) {
-    const newCard = new Card(element);
+function createCard(element, template) {
+
+    const newCard = new Card(element, template);
+    // const template = document.querySelector("#element-template").content;
     const cardElement = newCard.createCard();
     return cardElement;
 
@@ -125,8 +128,8 @@ function renderCard(card) {
 
 }
 
-const popupImageValidation = new FormValidator(validationConfig, popupImage)
-const popupProfileValidation = new FormValidator(validationConfig, popupProfile)
+const popupImageValidation = new FormValidator(validationConfig, imageForm)
+const popupProfileValidation = new FormValidator(validationConfig, formProfile)
 
 popupImageValidation.enableValidation();
 popupProfileValidation.enableValidation();
