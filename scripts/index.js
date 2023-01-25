@@ -89,18 +89,17 @@ openImagePopupButton.addEventListener('click', () => {
 // закрытие попапа для добавления картинки
 closeImagePopupButton.addEventListener('click', () => closePopup(popupImage));
 
-function createCard(element, template) {
-
+function createCard(element) {
+     const template = document.querySelector("#element-template").content;
     const newCard = new Card(element, template);
-    // const template = document.querySelector("#element-template").content;
     const cardElement = newCard.createCard();
     return cardElement;
 
 }
 
-initialCards.forEach((element) => {
-    renderCard(createCard(element));
-})
+initialCards.forEach((element, template) => {
+    renderCard(createCard(element, template));
+});
 
 //  сохранение информации
 function handleSubmitImage(evt) {
