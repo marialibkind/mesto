@@ -90,7 +90,7 @@ openImagePopupButton.addEventListener('click', () => {
 closeImagePopupButton.addEventListener('click', () => closePopup(popupImage));
 
 function createCard(element) {
-     const template = document.querySelector("#element-template").content;
+    const template = document.querySelector("#element-template").content;
     const newCard = new Card(element, template);
     const cardElement = newCard.createCard();
     return cardElement;

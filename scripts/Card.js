@@ -1,4 +1,4 @@
-import { openPopup, fullPopup, popupImageFull, popupNameFull} from "./index.js";
+import { openPopup, fullPopup, popupImageFull, popupNameFull } from "./index.js";
 export class Card {
     constructor(element, template) {
 
@@ -14,8 +14,7 @@ export class Card {
     }
 
     _like() {
-        this._likebutton = this._element.querySelector('.element__like');
-        this._likebutton.classList.toggle("element__like_active");
+        this._likeButton.classList.toggle("element__like_active");
     }
     _deleteCard() {
         this._element.remove();
@@ -39,15 +38,12 @@ export class Card {
         this._element = this._getTemplate();
         this._element.querySelector('.element__name').textContent = this._name;
         this._cardImage = this._element.querySelector('.element__image');
+        this._likeButton = this._element.querySelector('.element__like');
         this._cardImage.src = this._link;
         this._cardImage.alt = this._name;
         this.setEventListeners();
         return this._element;
 
-    }
-
-    renderCard(card) {
-        elementsList.prepend(card);
     }
 
 }
