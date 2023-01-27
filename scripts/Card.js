@@ -28,10 +28,9 @@ export class Card {
 
     }
     setEventListeners() {
-        this._element.querySelector('.element__like').addEventListener('click', () => { this._like() });
+        this._likeButton.addEventListener('click', () => { this._like() });
         this._element.querySelector('.element__bin').addEventListener('click', () => { this._deleteCard() });
-        this._element.querySelector('.element__image').addEventListener('click', () => { this._open() });
-
+        this._cardImage.addEventListener('click', () => { this._open() });
     }
 
     createCard() {
