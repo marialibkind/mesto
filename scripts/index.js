@@ -31,8 +31,8 @@ export function openPopup(popup) {
 
 // закрытие любого попапа
 function closePopup(popup) {
-    popup.classList.remove("popup_active");
-    document.removeEventListener("keydown", handleKeyPress)
+                        popup.classList.remove("popup_active");
+                        document.removeEventListener("keydown", handleKeyPress)
 }
 
 const overleyClosePopups = Array.from(document.querySelectorAll(".popup"));
@@ -80,8 +80,6 @@ export const popupNameFull = fullPopup.querySelector(".popup__name");
 
 
 // открытие попапа для добавления картинки
-
-
 openImagePopupButton.addEventListener('click', () => {
     openPopup(popupImage);
 });
