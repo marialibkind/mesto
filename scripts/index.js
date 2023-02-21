@@ -1,6 +1,11 @@
+
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
 import { validationConfig } from "./FormValidator.js";
+import { Section } from "./Section.js";
+import { Popup } from "./Popup.js";
+
+
 const initialCards = [
     { name: 'Архыз', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg' },
     { name: 'Челябинская область', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg' },
@@ -8,11 +13,20 @@ const initialCards = [
     { name: 'Камчатка', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg' },
     { name: 'Холмогорский район', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg' },
     { name: 'Байкал', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg' }
-]
+] 
+
+const cardsSection = new Section({
+    items: initialCards,
+    renderer: (cardItem) => {
+        const element = createCard(cardItem);
+        return element;
+}}, '.elements__list')
+cardsSection.renderItems();
+
+const popupProfileO = new Popup(".popup-profile");
 
 
 const openProfilePopupButton = document.querySelector(".profile__edit-btn");
-const popupProfile = document.querySelector(".popup-profile");
 const closeProfilePopupButton = document.querySelector(".cross");
 const formProfile = document.querySelector(".form-profile");
 const nameInput = document.querySelector(".popup__text_type_name");
@@ -31,8 +45,8 @@ export function openPopup(popup) {
 
 // закрытие любого попапа
 function closePopup(popup) {
-                        popup.classList.remove("popup_active");
-                        document.removeEventListener("keydown", handleKeyPress)
+    popup.classList.remove("popup_active");
+    document.removeEventListener("keydown", handleKeyPress)
 }
 
 const overleyClosePopups = Array.from(document.querySelectorAll(".popup"));
@@ -51,20 +65,20 @@ closeFullPopupButton.addEventListener('click', () => closePopup(fullPopup));
 // открытие попапа для изменения профиля
 
 openProfilePopupButton.addEventListener('click', () => {
-    openPopup(popupProfile);
+    popupProfileO.open();
     nameInput.value = profileName.textContent;
     infoInput.value = profileInfo.textContent;
 });
 
 // закрытие попапа для изменения профиля
-closeProfilePopupButton.addEventListener('click', () => closePopup(popupProfile));
+closeProfilePopupButton.addEventListener('click', () => popupProfileO.close());
 
 // сохранение информации при редактировании профиля
 function handleProfileFormSubmit(evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileInfo.textContent = infoInput.value;
-    closePopup(popupProfile);
+    popupProfileO.close();
 }
 formProfile.addEventListener('submit', handleProfileFormSubmit);
 
@@ -96,7 +110,7 @@ function createCard(element) {
 }
 
 initialCards.forEach((element, template) => {
-    renderCard(createCard(element, template));
+    renderCard(createCard(element, template));  //TODO : template это index 
 });
 
 //  сохранение информации
@@ -114,12 +128,12 @@ imageForm.addEventListener('submit', handleSubmitImage);
 function handleKeyPress(evt) {
     if (evt.key === "Escape") {
         const openedPopup = document.querySelector(".popup_active")
-        console.log(openedPopup)
+        // console.log(openedPopup)
         closePopup(openedPopup)
     }
 }
 
-function renderCard(card) {
+export function renderCard(card) {
 
     elementsList.prepend(card);
 

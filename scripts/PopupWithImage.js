@@ -1,16 +1,15 @@
-import { popupImageFull, openImagePopupButton, closeImagePopupButton} from ".";
-яяы
+import { popupImageFull, popupNameFull } from "./index.js";
 export class PopupWithImage extends Popup {
     constructor() {
         super(selector);
-        this._form = this.popup.queryselector('.popup-image');
-
     }
-    openImagePopupButton.addEventListener('click', () => {
-        openPopup(popupImage);
-     });
-    closeImagePopupButton.addEventListener('click', () => closePopup(popupImage));
-    
+    _openPopup() {
+        popupImageFull.setAttribute('src', this._link);
+        popupImageFull.setAttribute('alt', this._name);
+        popupNameFull.textContent = this._name;
+    }
+
+
 }
 
 

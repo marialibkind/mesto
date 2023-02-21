@@ -1,21 +1,21 @@
-import { popup, openPopup, closePopup } from ".";
+export class Popup {
 
-export class Popup{
-    constructor() {
-        super(selector);
+    _popupItem;
+
+    constructor(inputSelector) {
+        this._popupItem = document.querySelector(inputSelector);
     }
 
-    _open() {
-        popup.classList.add("popup_active");
+    open() {
+        this._popupItem.classList.add("popup_active");
         document.addEventListener("keydown", handleKeyPress)
     }
-    _close() {
-        popup.classList.remove("popup_active");
+    close() {
+        this._popupItem.classList.remove("popup_active");
         document.removeEventListener("keydown", handleKeyPress)
     }
     _SetEventListeners() {
-        const overleyClosePopups = Array.from(document.querySelectorAll(".popup"));
-        overleyClosePopups.forEach((overley) => {
+        this._popup =  this._popupItem.forEach((overley) => {
             overley.addEventListener("click", (evt) => {
                 if (evt.target.classList.contains('popup_active')) {
                     closePopup(evt.target);
