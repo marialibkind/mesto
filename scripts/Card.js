@@ -1,4 +1,7 @@
-import { openPopup, fullPopup, popupImageFull,   } from "./index.js";
+import { openPopup, fullPopup, popupImageFull, popupNameFull } from "./index.js";
+
+import { PopupWithImage } from "./PopupWithImage.js";
+
 export class Card {
     constructor(element, template) {
 
@@ -6,6 +9,7 @@ export class Card {
         this._name = element.name;
         this._alt = element.name;
         this._template = template;
+        this._popupImageO = new PopupWithImage(".popup-image");
     }
 
     _getTemplate() {
@@ -16,21 +20,25 @@ export class Card {
     _like() {
         this._likeButton.classList.toggle("element__like_active");
     }
+
     _deleteCard() {
+        
         this._element.remove();
+    }
+
+    _open(link, name) {
+        
+        this._popupImageO.open(link, name);
+        // popupImageFull.setAttribute('src', this._link);
+        // popupImageFull.setAttribute('alt', this._name);
+        // popupNameFull.textContent = this._name;
 
     }
-    _open() {
-        openPopup(fullPopup);
-        popupImageFull.setAttribute('src', this._link);
-        popupImageFull.setAttribute('alt', this._name);
-        popupNameFull.textContent = this._name;
 
-    }
     setEventListeners() {
         this._likeButton.addEventListener('click', () => { this._like() });
         this._element.querySelector('.element__bin').addEventListener('click', () => { this._deleteCard() });
-        this._cardImage.addEventListener('click', () => { this._open() });
+        this._cardImage.addEventListener('click', () => { this._open(this._link, this._name) });
     }
 
     createCard() {

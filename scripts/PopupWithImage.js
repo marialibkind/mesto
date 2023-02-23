@@ -1,14 +1,23 @@
-import { popupImageFull, popupNameFull } from "./index.js";
+import { Popup } from "./Popup.js";
+
 export class PopupWithImage extends Popup {
-    constructor() {
+
+    constructor(selector) {
+
         super(selector);
-    }
-    _openPopup() {
-        popupImageFull.setAttribute('src', this._link);
-        popupImageFull.setAttribute('alt', this._name);
-        popupNameFull.textContent = this._name;
+        this._fullPopup = document.querySelector(".popup-fullscreen");
+        this._popupImageFull = this._fullPopup.querySelector(".popup__image");
+        this._popupNameFull = this._fullPopup.querySelector(".popup__name");
+        
     }
 
+    open(link, name) {
+
+        this._popupImageFull.setAttribute('src', link);
+        this._popupImageFull.setAttribute('alt', name);
+        this._popupNameFull.textContent = name;
+
+    }
 
 }
 

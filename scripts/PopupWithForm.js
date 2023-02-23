@@ -1,3 +1,4 @@
+import { Popup } from "./Popup.js";
 export class PopupWithForm extends Popup {
     constructor( { formSubmit }, selector) {
     super(selector);
@@ -22,7 +23,7 @@ export class PopupWithForm extends Popup {
  }
     close() {
     this._form.reset();
-    super.close ()
+    super.close()
     
     }
 }

@@ -4,6 +4,8 @@ import { FormValidator } from "./FormValidator.js";
 import { validationConfig } from "./FormValidator.js";
 import { Section } from "./Section.js";
 import { Popup } from "./Popup.js";
+import { PopupWithImage } from "./PopupWithImage.js";
+import { PopupWithForm } from "./PopupWithForm.js";
 
 
 const initialCards = [
@@ -121,7 +123,7 @@ function handleSubmitImage(evt) {
     const newNewCard = createCard({ name: imageName, link: imageLink });
     renderCard(newNewCard);
     imageForm.reset();
-    closePopup(popupImage);
+    popupImageO.close();
 }
 imageForm.addEventListener('submit', handleSubmitImage);
 
