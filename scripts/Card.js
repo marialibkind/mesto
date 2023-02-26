@@ -9,7 +9,7 @@ export class Card {
         this._name = element.name;
         this._alt = element.name;
         this._template = template;
-        this._popupImageO = new PopupWithImage(".popup-image");
+        this._popupImageO = new PopupWithImage(".popup-fullscreen");
     }
 
     _getTemplate() {

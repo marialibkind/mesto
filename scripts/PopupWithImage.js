@@ -12,7 +12,7 @@ export class PopupWithImage extends Popup {
     }
 
     open(link, name) {
-
+        super.open();
         this._popupImageFull.setAttribute('src', link);
         this._popupImageFull.setAttribute('alt', name);
         this._popupNameFull.textContent = name;

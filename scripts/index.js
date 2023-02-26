@@ -21,11 +21,13 @@ const cardsSection = new Section({
     items: initialCards,
     renderer: (cardItem) => {
         const element = createCard(cardItem);
-        return element;
+        cardsSection.addItem(element);
 }}, '.elements__list')
 cardsSection.renderItems();
 
 const popupProfileO = new Popup(".popup-profile");
+
+const popupCard = new PopupWithForm(handleSubmitCard, ".popup-image");
 
 
 const openProfilePopupButton = document.querySelector(".profile__edit-btn");
@@ -97,11 +99,11 @@ export const popupNameFull = fullPopup.querySelector(".popup__name");
 
 // открытие попапа для добавления картинки
 openImagePopupButton.addEventListener('click', () => {
-    openPopup(popupImage);
+    popupCard.open();
 });
 
 // закрытие попапа для добавления картинки
-closeImagePopupButton.addEventListener('click', () => closePopup(popupImage));
+closeImagePopupButton.addEventListener('click', () => closePopup(popupCard));
 
 function createCard(element) {
     const template = document.querySelector("#element-template").content;
@@ -116,16 +118,16 @@ initialCards.forEach((element, template) => {
 });
 
 //  сохранение информации
-function handleSubmitImage(evt) {
-    evt.preventDefault();
+function handleSubmitCard(value) {
+    console.log(value)
     const imageName = imageNameInput.value;
     const imageLink = imageSrcInput.value;
     const newNewCard = createCard({ name: imageName, link: imageLink });
     renderCard(newNewCard);
     imageForm.reset();
-    popupImageO.close();
+    popupCard.close();
 }
-imageForm.addEventListener('submit', handleSubmitImage);
+// imageForm.addEventListener('submit', handleSubmitCard);
 
 function handleKeyPress(evt) {
     if (evt.key === "Escape") {
