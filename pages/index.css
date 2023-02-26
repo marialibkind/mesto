@@ -40,5 +40,5 @@
 @import url(../blocks/popup/__cont/popup__cont.css);
 @import url(../blocks/popup/__button/_disabled/popup__button_disabled.css);
 @import url(../blocks/popup/__text/_type/_error/popup__text_type_error.css);
-@import url(../blocks/input-error-enterinfo/input-error-enterinfo.css);
-@import url(../blocks/input-error-entername/input-error-entername.css);
+@import url(../blocks/input-error-enterInfo/input-error-enterinfo.css);
+@import url(../blocks/input-error-enterName/input-error-entername.css);
