@@ -94,7 +94,7 @@ export class FormValidator {
     this._checkInputValidity(inputElement, errorElement, invalidInputClass);
     this._toggleButtonState(inputs, formSubmitButtonElement);
   };
-  
+
   clearForm() {
     this._inputList.forEach((input) => {
       input.classList.remove(this._validationConfig.inputErrorClass);
