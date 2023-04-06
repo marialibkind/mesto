@@ -13,7 +13,9 @@ import {
   infoInput,
   nameInput,
   openProfilePopupButton,
+  sbmtDelete
 } from "./variables/elements.js";
+import { PopupWithDelete } from "./scripts/PopupWithDelete";
 
 //ЭКЗЕМПЛЯРЫ КЛАССОВ
 const popupImage = new PopupWithImage(".popup-fullscreen");
@@ -23,6 +25,9 @@ popupCard.setEventListeners();
 
 const popupUser = new PopupWithForm(handleProfileFormSubmit, ".popup-profile");
 popupUser.setEventListeners();
+
+const popupDelete = new PopupWithDelete(deleteCard, ".popup-delete");
+popupDelete.setEventListeners();
 
 const userInfo = new UserInfo({
   name: ".profile__name",
@@ -48,7 +53,6 @@ function handleSubmitCard(value) {
     link: value.enterInfo,
   });
   cardsSection.addItem(newNewCard);
-
   popupCard.close();
 }
 
@@ -61,13 +65,26 @@ function openImagePopup(name, link) {
   popupImage.open({ link, name });
 }
 
+function deleteCard(card){
+  card.remove();
+  popupDelete.close();
+  // вызывать API ПЕРЕДАТЬ НА СЕРВЕР И ПОТОМ ВЕРНУТЬ
+  console.log(card);
+}
+
 //ФУНКЦИИ
 function createCard(element) {
-  const newCard = new Card(element, "#element-template", openImagePopup);
+  const newCard = new Card(element, "#element-template", openImagePopup, deleteCardButton);
   return newCard.createCard();
 }
 
+function deleteCardButton(card) {
+ console.log(card);
+ popupDelete.open(card);
+}
+
 //СЛУШАТЕЛИ
+
 openImagePopupButton.addEventListener("click", () => {
 
   popupImageValidation.clearForm();
@@ -91,3 +108,12 @@ const popupProfileValidation = new FormValidator(validationConfig, formProfile);
 
 popupImageValidation.enableValidation();
 popupProfileValidation.enableValidation();
+
+
+
+const api = new API({url: 'https://nomoreparties.co/v1/cohort-62' ,
+headers: { autorization: 'c56e30dc-2883-4270-a59e-b2f7bae969c6',
+    `Content-Type` : 'application/json'}
+});
+
+)

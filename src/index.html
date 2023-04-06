@@ -2,13 +2,13 @@
 <html lang="ru">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
 		<title>Место</title>
 	</head>
 
 	<body class="page">
 		<header class="header">
-			<img src="<%=require('./images/header__logo.svg')%>" class="header__logo" alt="место" />
+			<img src="<%=require('./images/header__logo.svg')%>" class="header__logo" alt="место"/>
 		</header>
 
 		<main>
@@ -96,6 +96,16 @@
 					/>
 					<span class="input-error-enterInfo popup__input-error"></span>
 					<button class="popup__submit-btn" type="submit">Сохранить</button>
+				</form>
+				<button class="popup__cross-icon cross-image" type="button"></button>
+			</div>
+		</section>
+
+		<section class="popup popup-delete">
+			<div class="popup__container">
+				<h2 class="popup__title">Вы уверены?</h2>
+				<form class="popup__form form-add" name="enterInformation">
+					<button class="popup__submit-btn" type="submit">Да</button>
 				</form>
 				<button class="popup__cross-icon cross-image" type="button"></button>
 			</div>

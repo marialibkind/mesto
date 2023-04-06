@@ -1,9 +1,11 @@
 export class Card {
-  constructor(element, template, openPopup) {
+  constructor(element, template, openPopup, deleteCardButton) {
     this._link = element.link;
     this._name = element.name;
     this._template = template;
     this._popupImageOpen = openPopup;
+    this._sbmt = "popup__submit-btn";
+    this._delete = deleteCardButton;
   }
 
   _getTemplate() {
@@ -18,7 +20,7 @@ export class Card {
   }
 
   _deleteCard() {
-    this._element.remove();
+    this._delete(this._element);
   }
 
   _open() {
