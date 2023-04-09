@@ -35,5 +35,4 @@ export const validationConfig = {
   errorClass: ".popup__error_visible",
   inputErrors: '.popup__input-error',
   messageError: 'popup__input_error',
-
 };

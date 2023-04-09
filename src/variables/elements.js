@@ -5,6 +5,7 @@ const infoInput = document.querySelector(".popup__text_type_about");
 const sbmtDelete = document.querySelector(".popup-delete");
 const openImagePopupButton = document.querySelector(".profile__add-btn");
 const imageForm = document.querySelector(".form-add");
+const profileAvatar = document.querySelector(".profile__avatar");
 
 export {
   openImagePopupButton,
@@ -13,5 +14,6 @@ export {
   nameInput,
   imageForm,
   infoInput,
-  sbmtDelete
+  sbmtDelete,
+  profileAvatar
 };

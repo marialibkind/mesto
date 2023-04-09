@@ -14,10 +14,11 @@ import {
   infoInput,
   nameInput,
   openProfilePopupButton,
-  sbmtDelete
+  sbmtDelete,
+  profileAvatar
 } from "./variables/elements.js";
 import { PopupWithDelete } from "./scripts/PopupWithDelete.js";
-import {changeButtontext} from"./variables/utils.js";
+import { changeButtontext } from "./variables/utils.js";
 
 //ЭКЗЕМПЛЯРЫ КЛАССОВ
 const popupImage = new PopupWithImage(".popup-fullscreen");
@@ -30,6 +31,9 @@ popupUser.setEventListeners();
 
 const popupDelete = new PopupWithDelete(deleteCard, ".popup-delete");
 popupDelete.setEventListeners();
+
+const popupAvatar = new PopupWithAvatar(set, ".popup-avatar");
+popupAvatar.setEventListeners();
 
 const userInfo = new UserInfo({
   name: ".profile__name",
@@ -67,11 +71,11 @@ function handleProfileFormSubmit(value, button) {
     userInfo.setUserInfo(user.name, user.about);
     popupUser.close();
 
-}).catch((error) => {
-  console.log(error)
-}).finally(() => {
-  changeButtontext(button, orig)
-})
+  }).catch((error) => {
+    console.log(error)
+  }).finally(() => {
+    changeButtontext(button, orig)
+  })
 }
 
 function openImagePopup(name, link) {
@@ -85,18 +89,37 @@ function deleteCard(card, cardId) {
   }).catch((error) => console.log(error))
 }
 
+function deleteCard(card, cardId) {
+  api.deleteCard(cardId).then(() => {
+    card.remove();
+    popupDelete.close();
+  }).catch((error) => console.log(error))
+}
+
+// function setAvatar(link) {
+//   changeButtontext(button, 'проверка')
+//   api.setAvatar(link).then(() => {
+//     profileAvatar.link = link;
+//     popupAvatar.close();
+//   }).catch((error) => {
+//     console.log(error)
+//   }).finally(() => {
+//     changeButtontext(button, link)
+//   })
+// }
+
 //ФУНКЦИИ
 function createCard(element, userId) {
-  const newCard = new Card(element, {owner: "#element-template-owner", other:"#element-template"}, openImagePopup, deleteCardButton, clickLike, userId);
+  const newCard = new Card(element, { owner: "#element-template-owner", other: "#element-template" }, openImagePopup, deleteCardButton, setAvatarButton, clickLike, userId);
   console.log(newCard)
   return newCard.createCard();
 }
 
-function clickLike(cardId, card, ifLiked){
+function clickLike(cardId, card, ifLiked) {
 
-  if (ifLiked){
+  if (ifLiked) {
     api.deleteLike(cardId).then((res) => {
-   card.updateLikes(res.likes.length)
+      card.updateLikes(res.likes.length)
     }).catch((error) => {
       console.log(error)
     })
@@ -113,6 +136,10 @@ function clickLike(cardId, card, ifLiked){
 function deleteCardButton(card, cardId) {
   popupDelete.open(card, cardId);
 }
+
+// function setAvatarButton(link) {
+//   popupAvatar.open(link)
+// }
 
 //СЛУШАТЕЛИ
 
