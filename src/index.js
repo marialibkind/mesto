@@ -5,6 +5,7 @@ import { validationConfig, initialCards } from "./variables/const.js";
 import { Section } from "./scripts/Section.js";
 import { PopupWithImage } from "./scripts/PopupWithImage.js";
 import { PopupWithForm } from "./scripts/PopupWithForm.js";
+import API from "./scripts/API.js";
 import UserInfo from "./scripts/UserInfo.js";
 import {
   formProfile,
@@ -15,7 +16,8 @@ import {
   openProfilePopupButton,
   sbmtDelete
 } from "./variables/elements.js";
-import { PopupWithDelete } from "./scripts/PopupWithDelete";
+import { PopupWithDelete } from "./scripts/PopupWithDelete.js";
+import {changeButtontext} from"./variables/utils.js";
 
 //ЭКЗЕМПЛЯРЫ КЛАССОВ
 const popupImage = new PopupWithImage(".popup-fullscreen");
@@ -35,52 +37,81 @@ const userInfo = new UserInfo({
 });
 
 const cardsSection = new Section(
-  {
-    items: initialCards,
-    renderer: (cardItem) => {
-      const element = createCard(cardItem);
-      cardsSection.addItem(element);
-    },
+  (cardItem, userId) => {
+    const element = createCard(cardItem, userId);
+    cardsSection.addItem(element);
   },
   ".elements__list"
 );
-cardsSection.renderItems();
+
 
 //КОЛБЭК ФУНКЦИИ
 function handleSubmitCard(value) {
-  const newNewCard = createCard({
-    name: value.enterName,
-    link: value.enterInfo,
-  });
-  cardsSection.addItem(newNewCard);
-  popupCard.close();
+  console.log(userInfo.id)
+  console.log(value);
+  api.addCard(value.enterName, value.enterInfo).then((card) => {
+    console.log(card);
+    const newNewCard = createCard({
+      name: card.name,
+      link: card.link,
+    }, userInfo.id);
+    cardsSection.addItem(newNewCard);
+    popupCard.close();
+  })
 }
 
-function handleProfileFormSubmit(value) {
-  userInfo.setUserInfo(value.enterName, value.enterInfo);
-  popupUser.close();
+function handleProfileFormSubmit(value, button) {
+  const orig = button.textContent;;
+  changeButtontext(button, 'проверка')
+  api.setUserInfo(value.enterName, value.enterInfo).then((user) => {
+    userInfo.setUserInfo(user.name, user.about);
+    popupUser.close();
+
+}).catch((error) => {
+  console.log(error)
+}).finally(() => {
+  changeButtontext(button, orig)
+})
 }
 
 function openImagePopup(name, link) {
   popupImage.open({ link, name });
 }
 
-function deleteCard(card){
-  card.remove();
-  popupDelete.close();
-  // вызывать API ПЕРЕДАТЬ НА СЕРВЕР И ПОТОМ ВЕРНУТЬ
-  console.log(card);
+function deleteCard(card, cardId) {
+  api.deleteCard(cardId).then(() => {
+    card.remove();
+    popupDelete.close();
+  }).catch((error) => console.log(error))
 }
 
 //ФУНКЦИИ
-function createCard(element) {
-  const newCard = new Card(element, "#element-template", openImagePopup, deleteCardButton);
+function createCard(element, userId) {
+  const newCard = new Card(element, {owner: "#element-template-owner", other:"#element-template"}, openImagePopup, deleteCardButton, clickLike, userId);
+  console.log(newCard)
   return newCard.createCard();
 }
 
-function deleteCardButton(card) {
- console.log(card);
- popupDelete.open(card);
+function clickLike(cardId, card, ifLiked){
+
+  if (ifLiked){
+    api.deleteLike(cardId).then((res) => {
+   card.updateLikes(res.likes.length)
+    }).catch((error) => {
+      console.log(error)
+    })
+  } else {
+    api.addLike(cardId).then((res) => {
+      card.updateLikes(res.likes.length)
+    }).catch((error) => {
+      console.log(error)
+    })
+  }
+
+}
+
+function deleteCardButton(card, cardId) {
+  popupDelete.open(card, cardId);
 }
 
 //СЛУШАТЕЛИ
@@ -111,9 +142,18 @@ popupProfileValidation.enableValidation();
 
 
 
-const api = new API({url: 'https://nomoreparties.co/v1/cohort-62' ,
-headers: { autorization: 'c56e30dc-2883-4270-a59e-b2f7bae969c6',
-    `Content-Type` : 'application/json'}
+const api = new API({
+  url: 'https://mesto.nomoreparties.co/v1/cohort-62',
+  headers: {
+    authorization: '3aab9cc7-eb92-4dff-8990-de77b74458f2',
+    'Content-Type': 'application/json'
+  }
 });
 
-)
+Promise.all([api.getUserInfo(), api.getInitialCards()]).then((res) => {
+  console.log(res);
+  const user = res[0];
+  cardsSection.renderItems(res[1], user._id);
+  userInfo.setUserInfo(user.name, user.about);
+  userInfo.id = user._id;
+})

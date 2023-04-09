@@ -8,14 +8,15 @@ export class PopupWithDelete extends Popup {
     this._deleteCard = deleteCard;
   }
 
-  open(card) {
+  open(card, cardId) {
     super.open();
     this._card = card;
+    this._cardId = cardId;
   }
 
   _delete(evt) {
     evt.preventDefault();
-    this._deleteCard(this._card);
+    this._deleteCard(this._card, this._cardId);
     // console.log(this._card);
   }
 
