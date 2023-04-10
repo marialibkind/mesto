@@ -32,8 +32,8 @@ popupUser.setEventListeners();
 const popupDelete = new PopupWithDelete(deleteCard, ".popup-delete");
 popupDelete.setEventListeners();
 
-const popupAvatar = new PopupWithAvatar(set, ".popup-avatar");
-popupAvatar.setEventListeners();
+// const popupAvatar = new PopupWithAvatar(set, ".popup-avatar");
+// popupAvatar.setEventListeners();
 
 const userInfo = new UserInfo({
   name: ".profile__name",
@@ -55,10 +55,9 @@ function handleSubmitCard(value) {
   console.log(value);
   api.addCard(value.enterName, value.enterInfo).then((card) => {
     console.log(card);
-    const newNewCard = createCard({
-      name: card.name,
-      link: card.link,
-    }, userInfo.id);
+    const newNewCard = createCard(
+      card
+      , userInfo.id);
     cardsSection.addItem(newNewCard);
     popupCard.close();
   })
@@ -66,7 +65,7 @@ function handleSubmitCard(value) {
 
 function handleProfileFormSubmit(value, button) {
   const orig = button.textContent;;
-  changeButtontext(button, 'проверка')
+  changeButtontext(button, 'Сохранить...')
   api.setUserInfo(value.enterName, value.enterInfo).then((user) => {
     userInfo.setUserInfo(user.name, user.about);
     popupUser.close();
@@ -89,12 +88,6 @@ function deleteCard(card, cardId) {
   }).catch((error) => console.log(error))
 }
 
-function deleteCard(card, cardId) {
-  api.deleteCard(cardId).then(() => {
-    card.remove();
-    popupDelete.close();
-  }).catch((error) => console.log(error))
-}
 
 // function setAvatar(link) {
 //   changeButtontext(button, 'проверка')
@@ -110,7 +103,7 @@ function deleteCard(card, cardId) {
 
 //ФУНКЦИИ
 function createCard(element, userId) {
-  const newCard = new Card(element, { owner: "#element-template-owner", other: "#element-template" }, openImagePopup, deleteCardButton, setAvatarButton, clickLike, userId);
+  const newCard = new Card(element, { owner: "#element-template-owner", other: "#element-template" }, openImagePopup, deleteCardButton, clickLike, userId);//setAvatarButton
   console.log(newCard)
   return newCard.createCard();
 }
