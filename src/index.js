@@ -55,10 +55,9 @@ const cardsSection = new Section(
 
 //КОЛБЭК ФУНКЦИИ
 function handleSubmitCard(value) {
-  // console.log(userInfo.id)
-  // console.log(value);
+ 
   api.addCard(value.enterName, value.enterInfo).then((card) => {
-    // console.log(card);
+ 
     const newNewCard = createCard(
       card
       , userInfo.id);
@@ -82,8 +81,6 @@ function handleProfileFormSubmit(value, button) {
 }
 
 function handleAvatar(link){
-//console.log(link);
-//profileAvatarImg.src = link;
 console.log(profileAvatarImg);
 api.setAvatar(link)
   .then((data) => {
