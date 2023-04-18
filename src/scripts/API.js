@@ -81,13 +81,16 @@ export default class API {
     }
  
     setAvatar(urlAvatar){
-
+       //console.log(urlAvatar);
         return fetch(`${this._baseUrl}/users/me/avatar`,{
             headers: this._headers,
             method: 'PATCH',
-            body: JSON.stringify({
-                avatar: urlAvatar
-              })
+            body: JSON.stringify(
+              urlAvatar
+              )
+            // body: JSON.stringify({
+            //     avatar: urlAvatar
+            //   })
         })
             .then((res) => {
                 return this._checkResponse(res);

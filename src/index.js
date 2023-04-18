@@ -15,7 +15,10 @@ import {
   nameInput,
   openProfilePopupButton,
   sbmtDelete,
-  profileAvatar
+  profileAvatar,
+  profileAvatarButton,
+  profileAvatarImg
+
 } from "./variables/elements.js";
 import { PopupWithDelete } from "./scripts/PopupWithDelete.js";
 import { changeButtontext } from "./variables/utils.js";
@@ -32,8 +35,9 @@ popupUser.setEventListeners();
 const popupDelete = new PopupWithDelete(deleteCard, ".popup-delete");
 popupDelete.setEventListeners();
 
-// const popupAvatar = new PopupWithAvatar(set, ".popup-avatar");
-// popupAvatar.setEventListeners();
+const popupAvatar = new PopupWithForm(handleAvatar, ".popup-avatar");
+popupAvatar.setEventListeners();
+
 
 const userInfo = new UserInfo({
   name: ".profile__name",
@@ -51,10 +55,10 @@ const cardsSection = new Section(
 
 //КОЛБЭК ФУНКЦИИ
 function handleSubmitCard(value) {
-  console.log(userInfo.id)
-  console.log(value);
+  // console.log(userInfo.id)
+  // console.log(value);
   api.addCard(value.enterName, value.enterInfo).then((card) => {
-    console.log(card);
+    // console.log(card);
     const newNewCard = createCard(
       card
       , userInfo.id);
@@ -64,17 +68,29 @@ function handleSubmitCard(value) {
 }
 
 function handleProfileFormSubmit(value, button) {
-  const orig = button.textContent;;
+  const orig = button.textContent;
   changeButtontext(button, 'Сохранить...')
   api.setUserInfo(value.enterName, value.enterInfo).then((user) => {
     userInfo.setUserInfo(user.name, user.about);
     popupUser.close();
 
   }).catch((error) => {
-    console.log(error)
+    //console.log(error)
   }).finally(() => {
     changeButtontext(button, orig)
   })
+}
+
+function handleAvatar(link){
+//console.log(link);
+//profileAvatarImg.src = link;
+console.log(profileAvatarImg);
+api.setAvatar(link)
+  .then((data) => {
+  console.log(profileAvatarImg.src);
+  profileAvatarImg.src = data.avatar;
+  popupAvatar.close();
+})
 }
 
 function openImagePopup(name, link) {
@@ -95,7 +111,7 @@ function deleteCard(card, cardId) {
 //     profileAvatar.link = link;
 //     popupAvatar.close();
 //   }).catch((error) => {
-//     console.log(error)
+//     //console.log(error)
 //   }).finally(() => {
 //     changeButtontext(button, link)
 //   })
@@ -104,7 +120,7 @@ function deleteCard(card, cardId) {
 //ФУНКЦИИ
 function createCard(element, userId) {
   const newCard = new Card(element, { owner: "#element-template-owner", other: "#element-template" }, openImagePopup, deleteCardButton, clickLike, userId);//setAvatarButton
-  console.log(newCard)
+  //console.log(newCard);
   return newCard.createCard();
 }
 
@@ -114,13 +130,13 @@ function clickLike(cardId, card, ifLiked) {
     api.deleteLike(cardId).then((res) => {
       card.updateLikes(res.likes.length)
     }).catch((error) => {
-      console.log(error)
+      //console.log(error)
     })
   } else {
     api.addLike(cardId).then((res) => {
       card.updateLikes(res.likes.length)
     }).catch((error) => {
-      console.log(error)
+      //console.log(error)
     })
   }
 
@@ -130,9 +146,9 @@ function deleteCardButton(card, cardId) {
   popupDelete.open(card, cardId);
 }
 
-// function setAvatarButton(link) {
-//   popupAvatar.open(link)
-// }
+function setAvatarButton(link) {
+  popupAvatar.open(link)
+ }
 
 //СЛУШАТЕЛИ
 
@@ -149,8 +165,17 @@ openProfilePopupButton.addEventListener("click", () => {
   const { name, info } = userInfo.getUserInfo();
   nameInput.value = name;
   infoInput.value = info;
+  
 
   popupUser.open();
+});
+
+console.log(userInfo.getUserInfo());
+profileAvatarButton.addEventListener("click", () => {
+
+ 
+  popupAvatar.open();
+
 });
 
 //ВАЛИДАЦИИ
@@ -171,7 +196,7 @@ const api = new API({
 });
 
 Promise.all([api.getUserInfo(), api.getInitialCards()]).then((res) => {
-  console.log(res);
+  //console.log(res);
   const user = res[0];
   cardsSection.renderItems(res[1], user._id);
   userInfo.setUserInfo(user.name, user.about);

@@ -1,0 +1,14 @@
+.profile__avatar_button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.profile__avatar_button:hover {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(../../../../images/pen_icon.svg);
+    opacity: .8;
+    background-color: black;
+}
