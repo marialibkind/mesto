@@ -1,12 +1,12 @@
 import "./index.css";
-import { Card } from "./scripts/Card.js";
-import { FormValidator } from "./scripts/FormValidator.js";
-import { validationConfig, initialCards } from "./variables/const.js";
-import { Section } from "./scripts/Section.js";
-import { PopupWithImage } from "./scripts/PopupWithImage.js";
-import { PopupWithForm } from "./scripts/PopupWithForm.js";
-import API from "./scripts/API.js";
-import UserInfo from "./scripts/UserInfo.js";
+import { Card } from "../components/Card.js";
+import { FormValidator } from "../components/FormValidator.js";
+import { validationConfig, initialCards } from "../variables/const.js";
+import { Section } from "../components/Section.js";
+import { PopupWithImage } from "../components/PopupWithImage.js";
+import { PopupWithForm } from "../components/PopupWithForm.js";
+import API from "../components/API.js";
+import UserInfo from "../components/UserInfo.js";
 import {
   formProfile,
   imageForm,
@@ -17,11 +17,12 @@ import {
   sbmtDelete,
   profileAvatar,
   profileAvatarButton,
-  profileAvatarImg
+  profileAvatarImg,
+  formAvatar
 
-} from "./variables/elements.js";
-import { PopupWithDelete } from "./scripts/PopupWithDelete.js";
-import { changeButtontext } from "./variables/utils.js";
+} from "../variables/elements.js";
+import { PopupWithDelete } from "../components/PopupWithDelete.js";
+import { changeButtontext } from "../variables/utils.js";
 
 //ЭКЗЕМПЛЯРЫ КЛАССОВ
 const popupImage = new PopupWithImage(".popup-fullscreen");
@@ -55,7 +56,8 @@ const cardsSection = new Section(
 
 //КОЛБЭК ФУНКЦИИ
 function handleSubmitCard(value) {
- 
+  const orig = button.textContent;
+  changeButtontext(button, 'Сохранить...');
   api.addCard(value.enterName, value.enterInfo).then((card) => {
  
     const newNewCard = createCard(
@@ -64,29 +66,40 @@ function handleSubmitCard(value) {
     cardsSection.addItem(newNewCard);
     popupCard.close();
   })
+  .catch((error) => {
+    console.error(error);
+  }).finally(() => {
+    changeButtontext(button, orig);
+  })
 }
 
 function handleProfileFormSubmit(value, button) {
   const orig = button.textContent;
-  changeButtontext(button, 'Сохранить...')
+  changeButtontext(button, 'Сохранить...');
   api.setUserInfo(value.enterName, value.enterInfo).then((user) => {
     userInfo.setUserInfo(user.name, user.about);
     popupUser.close();
 
   }).catch((error) => {
-    //console.log(error)
+    console.error(error);
   }).finally(() => {
     changeButtontext(button, orig)
   })
 }
 
 function handleAvatar(link){
-console.log(profileAvatarImg);
+  const orig = button.textContent;
+  changeButtontext(button, 'Сохранить...');
 api.setAvatar(link)
   .then((data) => {
   console.log(profileAvatarImg.src);
   profileAvatarImg.src = data.avatar;
   popupAvatar.close();
+})
+.catch((error) => {
+  console.error(error);
+}).finally(() => {
+  changeButtontext(button, orig)
 })
 }
 
@@ -98,7 +111,8 @@ function deleteCard(card, cardId) {
   api.deleteCard(cardId).then(() => {
     card.remove();
     popupDelete.close();
-  }).catch((error) => console.log(error))
+  }).catch((error) => 
+  console.error(error))
 }
 
 
@@ -127,13 +141,13 @@ function clickLike(cardId, card, ifLiked) {
     api.deleteLike(cardId).then((res) => {
       card.updateLikes(res.likes.length)
     }).catch((error) => {
-      //console.log(error)
+      console.error(error);
     })
   } else {
     api.addLike(cardId).then((res) => {
       card.updateLikes(res.likes.length)
     }).catch((error) => {
-      //console.log(error)
+      console.error(error);
     })
   }
 
@@ -168,20 +182,50 @@ openProfilePopupButton.addEventListener("click", () => {
 });
 
 console.log(userInfo.getUserInfo());
+
 profileAvatarButton.addEventListener("click", () => {
 
- 
+  popupAvatar.clearForm();
   popupAvatar.open();
 
 });
 
 //ВАЛИДАЦИИ
+
+const formValidators = {}
+
+// Включение валидации
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector))
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(formElement, config)
+// получаем данные из атрибута `name` у формы
+    const formName = formElement.getAttribute('name')
+
+   // вот тут в объект записываем под именем формы
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
+};
+
+enableValidation(config);
+
+formValidators[ profileForm.getAttribute('name') ].resetValidation()
+
+// или можно использовать строку (ведь Вы знаете, какой атрибут `name` у каждой формы)
+formValidators['profile-form'].resetValidation()
+
+
+
+
+
 const popupImageValidation = new FormValidator(validationConfig, imageForm);
 const popupProfileValidation = new FormValidator(validationConfig, formProfile);
+const popupAvatarValidation = new FormValidator(validationConfig, formAvatar);
 
 popupImageValidation.enableValidation();
 popupProfileValidation.enableValidation();
-
+popupAvatarValidation.enableValidation();
 
 
 const api = new API({

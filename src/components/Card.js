@@ -7,7 +7,7 @@ export class Card {
     this._likesArray = element.likes;
     this._countLikes = element.likes.length;
     this._templates = templates;
-    this._popupImageOpen = openPopup;
+    this._openPopupImage = openPopup;
     this._sbmt = "popup__submit-btn";
     this._delete = deleteCardButton;
     this._clickLike = clickLike;
@@ -23,13 +23,12 @@ export class Card {
   }
 
   _like() {
-    this._likeButton.classList.toggle("element__like_active");
     this._clickLike(this._id, this, this._ifLiked);
-    this._ifLiked = !this._ifLiked;
   }
 
   updateLikes(count) {
-
+    this._likeButton.classList.toggle("element__like_active");
+    this._ifLiked = !this._ifLiked;
     this._likeCount.textContent = count;
 
   }
@@ -38,7 +37,7 @@ export class Card {
   }
 
   _open() {
-    this._popupImageOpen(this._name, this._link);
+    this._openPopupImage(this._name, this._link);
   }
 
   setEventListeners() {
