@@ -14,8 +14,6 @@ import {
   infoInput,
   nameInput,
   openProfilePopupButton,
-  sbmtDelete,
-  profileAvatar,
   profileAvatarButton,
   profileAvatarImg,
   formAvatar
@@ -43,6 +41,7 @@ popupAvatar.setEventListeners();
 const userInfo = new UserInfo({
   name: ".profile__name",
   info: ".profile__info",
+  avatar: ".profile__avatar",
 });
 
 const cardsSection = new Section(
@@ -87,7 +86,7 @@ function handleProfileFormSubmit(value, button) {
   })
 }
 
-function handleAvatar(link){
+function handleAvatar(link, button){
   const orig = button.textContent;
   changeButtontext(button, 'Сохранить...');
 api.setAvatar(link)
@@ -116,17 +115,7 @@ function deleteCard(card, cardId) {
 }
 
 
-// function setAvatar(link) {
-//   changeButtontext(button, 'проверка')
-//   api.setAvatar(link).then(() => {
-//     profileAvatar.link = link;
-//     popupAvatar.close();
-//   }).catch((error) => {
-//     //console.log(error)
-//   }).finally(() => {
-//     changeButtontext(button, link)
-//   })
-// }
+
 
 //ФУНКЦИИ
 function createCard(element, userId) {
@@ -157,9 +146,7 @@ function deleteCardButton(card, cardId) {
   popupDelete.open(card, cardId);
 }
 
-function setAvatarButton(link) {
-  popupAvatar.open(link)
- }
+
 
 //СЛУШАТЕЛИ
 
@@ -185,39 +172,12 @@ console.log(userInfo.getUserInfo());
 
 profileAvatarButton.addEventListener("click", () => {
 
-  popupAvatar.clearForm();
+  popupAvatarValidation.clearForm();
   popupAvatar.open();
 
 });
 
 //ВАЛИДАЦИИ
-
-const formValidators = {}
-
-// Включение валидации
-const enableValidation = (config) => {
-  const formList = Array.from(document.querySelectorAll(config.formSelector))
-  formList.forEach((formElement) => {
-    const validator = new FormValidator(formElement, config)
-// получаем данные из атрибута `name` у формы
-    const formName = formElement.getAttribute('name')
-
-   // вот тут в объект записываем под именем формы
-    formValidators[formName] = validator;
-    validator.enableValidation();
-  });
-};
-
-enableValidation(config);
-
-formValidators[ profileForm.getAttribute('name') ].resetValidation()
-
-// или можно использовать строку (ведь Вы знаете, какой атрибут `name` у каждой формы)
-formValidators['profile-form'].resetValidation()
-
-
-
-
 
 const popupImageValidation = new FormValidator(validationConfig, imageForm);
 const popupProfileValidation = new FormValidator(validationConfig, formProfile);
@@ -240,6 +200,6 @@ Promise.all([api.getUserInfo(), api.getInitialCards()]).then((res) => {
   //console.log(res);
   const user = res[0];
   cardsSection.renderItems(res[1], user._id);
-  userInfo.setUserInfo(user.name, user.about);
+  userInfo.setUserInfo(user.name, user.about, user.avatar);
   userInfo.id = user._id;
 })

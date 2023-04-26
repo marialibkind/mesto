@@ -80,13 +80,24 @@
 		</div>
 	</section>
 
+	<!-- export const validationConfig = {
+		formSelector: ".popup__form",
+		inputSelector: ".popup__text",
+		submitButtonSelector: ".popup__submit-btn",
+		inactiveButtonClass: "popup__button_disabled",
+		inputErrorClass: "popup__text_type_error",
+		errorClass: ".popup__error_visible",
+		inputErrors: '.popup__input-error',
+		messageError: 'popup__input_error',
+	  }; -->
+
 	<section class="popup popup-avatar">
 		<div class="popup__container">
 			<h2 class="popup__title">Обновить аватар?</h2>
 			<form class="popup__form form-avatar" name="enterInformation">
 				<input class="popup__text popup__text_type_avatar-link" name="avatar" type="link" 
 					 placeholder="Название" />
-				<span class="input-error-enterName popup__input-error"></span>
+				<span class="input-error-avatar popup__input-error"></span>
 				<button class="popup__submit-btn" type="submit">Сохранить</button>
 			</form>
 			<button class="popup__cross-icon cross-image" type="button"></button>

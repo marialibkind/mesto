@@ -2,7 +2,7 @@
   "name": "mesto",
   "version": "1.0.0",
   "description": "МЕСТО",
-  "main": "index.js",
+   "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/marialibkind/mesto.git"

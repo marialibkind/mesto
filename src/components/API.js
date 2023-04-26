@@ -86,11 +86,9 @@ export default class API {
             headers: this._headers,
             method: 'PATCH',
             body: JSON.stringify(
-              urlAvatar
+                urlAvatar
               )
-            // body: JSON.stringify({
-            //     avatar: urlAvatar
-            //   })
+            
         })
             .then((res) => {
                 return this._checkResponse(res);
