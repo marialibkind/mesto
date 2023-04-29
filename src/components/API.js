@@ -51,6 +51,7 @@ export default class API {
                 name: name,
                 link: link,
             })
+            
         })
             .then((res) => {
                 return this._checkResponse(res);
