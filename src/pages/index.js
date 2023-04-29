@@ -1,7 +1,7 @@
 import "./index.css";
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
-import { validationConfig, initialCards } from "../variables/const.js";
+import { validationConfig} from "../variables/const.js";
 import { Section } from "../components/Section.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
@@ -15,7 +15,6 @@ import {
   nameInput,
   openProfilePopupButton,
   profileAvatarButton,
-  profileAvatarImg,
   formAvatar
 
 } from "../variables/elements.js";
@@ -61,7 +60,7 @@ function handleSubmitCard(value, button) {
 
     const newNewCard = createCard(
       card
-      , userInfo.id);
+      , userInfo.getId());
     cardsSection.addItem(newNewCard);
     popupCard.close();
   })
@@ -92,7 +91,6 @@ function handleAvatar(link, button) {
   api.setAvatar(link)
     .then((data) => {
       console.log(data.avatar);
-      // profileAvatarImg.src = data.avatar;
       userInfo.setUserAvatar(data.avatar);
       popupAvatar.close();
     })
@@ -120,8 +118,8 @@ function deleteCard(card, cardId) {
 
 //ФУНКЦИИ
 function createCard(element, userId) {
-  const newCard = new Card(element, { owner: "#element-template-owner", other: "#element-template" }, openImagePopup, deleteCardButton, clickLike, userId);//setAvatarButton
-  //console.log(newCard);
+  const newCard = new Card(element, { owner: "#element-template-owner", other: "#element-template" }, 
+  openImagePopup, deleteCardButton, clickLike, userId);
   return newCard.createCard();
 }
 
@@ -169,11 +167,10 @@ openProfilePopupButton.addEventListener("click", () => {
   popupUser.open();
 });
 
-//console.log(userInfo.getUserInfo());
+
 
 profileAvatarButton.addEventListener("click", () => {
-  // const { avatar } = userInfo.getUserAvatar();
-  // profileAvatarImg.src = avatar;
+  
   popupAvatarValidation.clearForm();
   popupAvatar.open();
 
@@ -202,10 +199,8 @@ Promise.all([api.getUserInfo(), api.getInitialCards()]).then((res) => {
   console.log(res);
   const user = res[0];
   cardsSection.renderItems(res[1], user._id);
-  userInfo.setUserInfo(user.name, user.about);
+  userInfo.setUserInfo(user.name, user.about, user._id);
   userInfo.setUserAvatar(user.avatar);
-// console.log(user.avatar);
-  userInfo.id = user._id;
 }).catch((error) =>
 console.error(error))
 

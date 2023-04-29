@@ -12,7 +12,6 @@ export class Card {
     this._delete = deleteCardButton;
     this._clickLike = clickLike;
     this._userId = userId;
-    //console.log(element);
   }
 
   _getTemplate(template) {

@@ -51,7 +51,7 @@ export default class API {
                 name: name,
                 link: link,
             })
-            
+
         })
             .then((res) => {
                 return this._checkResponse(res);
@@ -82,7 +82,7 @@ export default class API {
     }
 
     setAvatar(urlAvatar) {
-        //console.log(urlAvatar);
+
         return fetch(`${this._baseUrl}/users/me/avatar`, {
             headers: this._headers,
             method: 'PATCH',

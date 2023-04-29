@@ -3,7 +3,6 @@ export class PopupWithDelete extends Popup {
   constructor(deleteCard, selector) {
     super(selector);
     this._form = this._popup.querySelector(".popup__form");
-    // this._submitForm = this._submitForm.bind(this);
     this._delete = this._delete.bind(this);
     this._deleteCard = deleteCard;
   }
@@ -17,7 +16,6 @@ export class PopupWithDelete extends Popup {
   _delete(evt) {
     evt.preventDefault();
     this._deleteCard(this._card, this._cardId);
-    // console.log(this._card);
   }
 
   setEventListeners() {

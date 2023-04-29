@@ -7,7 +7,6 @@ const openImagePopupButton = document.querySelector(".profile__add-btn");
 const imageForm = document.querySelector(".form-add");
 const profileAvatarButton = document.querySelector(".profile__avatar_button");
 const profileAvatar = document.querySelector(".profile-avatar");
-const profileAvatarImg = document.querySelector(".profile__avatar");
 const formAvatar = document.querySelector(".form-avatar");
 
 
@@ -21,6 +20,5 @@ export {
   sbmtDelete,
   profileAvatar,
   profileAvatarButton,
-  profileAvatarImg,
   formAvatar
 };

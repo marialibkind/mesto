@@ -11,18 +11,18 @@ export default class UserInfo {
       info: this._info.textContent,
     };
   }
-  // getUserAvatar() {
-  //   return {
-  //     avatar: this._avatar
-  //   };
-  // }
 
-  setUserInfo(name, info) {
+  getId() {
+    return this._id;
+  }
+
+  setUserInfo(name, info, _id) {
     this._name.textContent = name;
     this._info.textContent = info;
-
+    this._id = _id;
   }
   setUserAvatar(avatar) {
     this._avatar.src = avatar;
   }
+
 }
