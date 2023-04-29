@@ -54,22 +54,22 @@ const cardsSection = new Section(
 
 
 //КОЛБЭК ФУНКЦИИ
-function handleSubmitCard(value) {
+function handleSubmitCard(value, button) {
   const orig = button.textContent;
   changeButtontext(button, 'Сохранить...');
   api.addCard(value.enterName, value.enterInfo).then((card) => {
- 
+
     const newNewCard = createCard(
       card
       , userInfo.id);
     cardsSection.addItem(newNewCard);
     popupCard.close();
   })
-  .catch((error) => {
-    console.error(error);
-  }).finally(() => {
-    changeButtontext(button, orig);
-  })
+    .catch((error) => {
+      console.error(error);
+    }).finally(() => {
+      changeButtontext(button, orig);
+    })
 }
 
 function handleProfileFormSubmit(value, button) {
@@ -86,20 +86,21 @@ function handleProfileFormSubmit(value, button) {
   })
 }
 
-function handleAvatar(link, button){
+function handleAvatar(link, button) {
   const orig = button.textContent;
   changeButtontext(button, 'Сохранить...');
-api.setAvatar(link)
-  .then((data) => {
-  console.log(profileAvatarImg.src);
-  profileAvatarImg.src = data.avatar;
-  popupAvatar.close();
-})
-.catch((error) => {
-  console.error(error);
-}).finally(() => {
-  changeButtontext(button, orig)
-})
+  api.setAvatar(link)
+    .then((data) => {
+      console.log(data.avatar);
+      // profileAvatarImg.src = data.avatar;
+      userInfo.setUserAvatar(data.avatar);
+      popupAvatar.close();
+    })
+    .catch((error) => {
+      console.error(error);
+    }).finally(() => {
+      changeButtontext(button, orig)
+    })
 }
 
 function openImagePopup(name, link) {
@@ -110,8 +111,8 @@ function deleteCard(card, cardId) {
   api.deleteCard(cardId).then(() => {
     card.remove();
     popupDelete.close();
-  }).catch((error) => 
-  console.error(error))
+  }).catch((error) =>
+    console.error(error))
 }
 
 
@@ -163,15 +164,16 @@ openProfilePopupButton.addEventListener("click", () => {
   const { name, info } = userInfo.getUserInfo();
   nameInput.value = name;
   infoInput.value = info;
-  
+
 
   popupUser.open();
 });
 
-console.log(userInfo.getUserInfo());
+//console.log(userInfo.getUserInfo());
 
 profileAvatarButton.addEventListener("click", () => {
-
+  // const { avatar } = userInfo.getUserAvatar();
+  // profileAvatarImg.src = avatar;
   popupAvatarValidation.clearForm();
   popupAvatar.open();
 
@@ -197,9 +199,13 @@ const api = new API({
 });
 
 Promise.all([api.getUserInfo(), api.getInitialCards()]).then((res) => {
-  //console.log(res);
+  console.log(res);
   const user = res[0];
   cardsSection.renderItems(res[1], user._id);
-  userInfo.setUserInfo(user.name, user.about, user.avatar);
+  userInfo.setUserInfo(user.name, user.about);
+  userInfo.setUserAvatar(user.avatar);
+// console.log(user.avatar);
   userInfo.id = user._id;
-})
+}).catch((error) =>
+console.error(error))
+

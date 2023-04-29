@@ -6,7 +6,7 @@ export class FormValidator {
     this._inputSelector = this._validationConfig.inputSelector;
     this._buttonSelector = this._validationConfig.submitButtonSelector;
     this._inputList = Array.from(
-        this._formElement.querySelectorAll(this._inputSelector)
+      this._formElement.querySelectorAll(this._inputSelector)
     );
   }
   enableValidation = () => {
@@ -105,6 +105,6 @@ export class FormValidator {
         errorElement,
         this._validationConfig.inputErrorClass
       );
-})
+    })
   }
 }

@@ -5,7 +5,7 @@ export default class API {
         console.log(this._baseUrl, this._headers)
     }
     getUserInfo() {
-        return fetch(`${this._baseUrl}/users/me`,{
+        return fetch(`${this._baseUrl}/users/me`, {
             headers: this._headers
         })
             .then((res) => {
@@ -15,13 +15,13 @@ export default class API {
 
     _checkResponse(res) {
         if (res.ok) {
-           return res.json();
+            return res.json();
         }
         return Promise.reject(`Ошибка: ${res.status}`)
     }
 
     getInitialCards() {
-        return fetch(`${this._baseUrl}/cards`,{
+        return fetch(`${this._baseUrl}/cards`, {
             headers: this._headers
         })
             .then((res) => {
@@ -30,13 +30,13 @@ export default class API {
     }
 
     setUserInfo(name, about) {
-        return fetch(`${this._baseUrl}/users/me`,{
+        return fetch(`${this._baseUrl}/users/me`, {
             headers: this._headers,
             method: 'PATCH',
             body: JSON.stringify({
                 name: name,
                 about: about,
-              })
+            })
         })
             .then((res) => {
                 return this._checkResponse(res);
@@ -44,13 +44,13 @@ export default class API {
     }
 
     addCard(name, link) {
-        return fetch(`${this._baseUrl}/cards`,{
+        return fetch(`${this._baseUrl}/cards`, {
             headers: this._headers,
             method: 'POST',
             body: JSON.stringify({
                 name: name,
                 link: link,
-              })
+            })
         })
             .then((res) => {
                 return this._checkResponse(res);
@@ -58,37 +58,37 @@ export default class API {
     }
 
     addLike(cardId) {
-        return fetch(`${this._baseUrl}/cards/${cardId}/likes`,{
+        return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
             headers: this._headers,
             method: 'PUT',
-            
+
         })
             .then((res) => {
                 return this._checkResponse(res);
             })
     }
 
-    
+
     deleteLike(cardId) {
-        return fetch(`${this._baseUrl}/cards/${cardId}/likes`,{
+        return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
             headers: this._headers,
             method: 'DELETE',
-            
+
         })
             .then((res) => {
                 return this._checkResponse(res);
             })
     }
- 
-    setAvatar(urlAvatar){
-       //console.log(urlAvatar);
-        return fetch(`${this._baseUrl}/users/me/avatar`,{
+
+    setAvatar(urlAvatar) {
+        //console.log(urlAvatar);
+        return fetch(`${this._baseUrl}/users/me/avatar`, {
             headers: this._headers,
             method: 'PATCH',
             body: JSON.stringify(
                 urlAvatar
-              )
-            
+            )
+
         })
             .then((res) => {
                 return this._checkResponse(res);
@@ -97,16 +97,16 @@ export default class API {
     }
 
     deleteCard(cardId) {
-        return fetch(`${this._baseUrl}/cards/${cardId}`,{
+        return fetch(`${this._baseUrl}/cards/${cardId}`, {
             headers: this._headers,
             method: 'DELETE',
-            
+
         })
             .then((res) => {
                 return this._checkResponse(res);
             })
     }
- 
+
 
 }
 

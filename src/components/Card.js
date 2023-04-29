@@ -42,8 +42,8 @@ export class Card {
 
   setEventListeners() {
     this._likeButton.addEventListener("click", () => this._like());
-    if (this._ifOwner){
-    this._elementDelete.addEventListener("click", () => this._deleteCard());
+    if (this._ifOwner) {
+      this._elementDelete.addEventListener("click", () => this._deleteCard());
     }
     this._cardImage.addEventListener("click", () => this._open());
   }
@@ -66,8 +66,8 @@ export class Card {
     if (this._ifLiked) {
       this._likeButton.classList.add("element__like_active");
     }
-    if (this._ifOwner){
-    this._elementDelete = this._element.querySelector(".element__bin");
+    if (this._ifOwner) {
+      this._elementDelete = this._element.querySelector(".element__bin");
     }
 
     this._cardImage.src = this._link;
