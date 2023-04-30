@@ -1,3 +1,3 @@
-export function changeButtontext(button, text){
+export function changeButtontext(button, text) {
     button.textContent = text;
 }

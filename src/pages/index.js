@@ -1,7 +1,7 @@
 import "./index.css";
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
-import { validationConfig} from "../variables/const.js";
+import { validationConfig } from "../variables/const.js";
 import { Section } from "../components/Section.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
@@ -56,14 +56,14 @@ const cardsSection = new Section(
 function handleSubmitCard(value, button) {
   const orig = button.textContent;
   changeButtontext(button, 'Сохранить...');
-  api.addCard(value.enterName, value.enterInfo).then((card) => {
+  api.addCard(value.enterName, value.enterInfo)
+    .then((card) => {
 
-    const newNewCard = createCard(
-      card
-      , userInfo.getId());
-    cardsSection.addItem(newNewCard);
-    popupCard.close();
-  })
+      const newNewCard = createCard(
+        card, userInfo.getId());
+      cardsSection.addItem(newNewCard);
+      popupCard.close();
+    })
     .catch((error) => {
       console.error(error);
     }).finally(() => {
@@ -74,15 +74,16 @@ function handleSubmitCard(value, button) {
 function handleProfileFormSubmit(value, button) {
   const orig = button.textContent;
   changeButtontext(button, 'Сохранить...');
-  api.setUserInfo(value.enterName, value.enterInfo).then((user) => {
-    userInfo.setUserInfo(user.name, user.about);
-    popupUser.close();
+  api.setUserInfo(value.enterName, value.enterInfo)
+    .then((user) => {
+      userInfo.setUserInfo(user.name, user.about);
+      popupUser.close();
 
-  }).catch((error) => {
-    console.error(error);
-  }).finally(() => {
-    changeButtontext(button, orig)
-  })
+    }).catch((error) => {
+      console.error(error);
+    }).finally(() => {
+      changeButtontext(button, orig)
+    })
 }
 
 function handleAvatar(link, button) {
@@ -106,11 +107,12 @@ function openImagePopup(name, link) {
 }
 
 function deleteCard(card, cardId) {
-  api.deleteCard(cardId).then(() => {
-    card.remove();
-    popupDelete.close();
-  }).catch((error) =>
-    console.error(error))
+  api.deleteCard(cardId)
+    .then(() => {
+      card.remove();
+      popupDelete.close();
+    }).catch((error) =>
+      console.error(error))
 }
 
 
@@ -118,8 +120,8 @@ function deleteCard(card, cardId) {
 
 //ФУНКЦИИ
 function createCard(element, userId) {
-  const newCard = new Card(element, { owner: "#element-template-owner", other: "#element-template" }, 
-  openImagePopup, deleteCardButton, clickLike, userId);
+  const newCard = new Card(element, { owner: "#element-template-owner", other: "#element-template" },
+    openImagePopup, deleteCardButton, clickLike, userId);
   return newCard.createCard();
 }
 
@@ -142,7 +144,9 @@ function clickLike(cardId, card, ifLiked) {
 }
 
 function deleteCardButton(card, cardId) {
+
   popupDelete.open(card, cardId);
+
 }
 
 
@@ -162,15 +166,14 @@ openProfilePopupButton.addEventListener("click", () => {
   const { name, info } = userInfo.getUserInfo();
   nameInput.value = name;
   infoInput.value = info;
-
-
   popupUser.open();
+
 });
 
 
 
 profileAvatarButton.addEventListener("click", () => {
-  
+
   popupAvatarValidation.clearForm();
   popupAvatar.open();
 
@@ -202,5 +205,5 @@ Promise.all([api.getUserInfo(), api.getInitialCards()]).then((res) => {
   userInfo.setUserInfo(user.name, user.about, user._id);
   userInfo.setUserAvatar(user.avatar);
 }).catch((error) =>
-console.error(error))
+  console.error(error))
 
