@@ -76,7 +76,7 @@ function handleProfileFormSubmit(value, button) {
   changeButtontext(button, 'Сохранить...');
   api.setUserInfo(value.enterName, value.enterInfo)
     .then((user) => {
-      userInfo.setUserInfo(user.name, user.about);
+      userInfo.setUserInfo(user.name, user.about, user._id);
       popupUser.close();
 
     }).catch((error) => {
